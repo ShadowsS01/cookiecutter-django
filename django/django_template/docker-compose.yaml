@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/home/python/app
+      - ./.docker/zsh/history:/home/python/zsh:delegated
+    depends_on:
+      - load_env
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - ./.docker/postgres_data:/var/lib/postgresql/data/
+    depends_on:
+      - load_env
+
+  pg_admin:
+    image: dpage/pgadmin4
+    env_file:
+      - .env
+    ports:
+      - 5050:80
