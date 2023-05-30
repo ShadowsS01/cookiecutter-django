@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 .docker/postgres_data
+.docker/zsh/history/.zsh_history
 
 # C extensions
 *.so

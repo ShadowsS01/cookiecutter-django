@@ -13,7 +13,6 @@ services:
       - .:/home/python/app
       - ./.docker/zsh/history:/home/python/zsh:delegated
     depends_on:
-      - load_env
       - postgres
 
   postgres:
@@ -24,8 +23,6 @@ services:
       - ${POSTGRES_PORT}:5432
     volumes:
       - ./.docker/postgres_data:/var/lib/postgresql/data/
-    depends_on:
-      - load_env
 
   pg_admin:
     image: dpage/pgadmin4
