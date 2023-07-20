@@ -1,0 +1,41 @@
+version: "3.8"
+
+volumes:
+  {{ cookiecutter.project_slug }}_local_postgres_data: {}
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: {{ cookiecutter.project_slug }}_local_django
+    container_name: {{ cookiecutter.project_slug }}_local_django
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/home/dev-user/app:z
+    depends_on:
+      - postgres
+    command: ["/start"]
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: {{ cookiecutter.project_slug }}_production_postgres
+    container_name: {{ cookiecutter.project_slug }}_local_postgres
+    volumes:
+      - {{ cookiecutter.project_slug }}_local_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.local/.postgres
+
+  pg_admin:
+    image: dpage/pgadmin4
+    container_name: {{ cookiecutter.project_slug }}_local_pgadmin
+    env_file:
+      - ./.envs/.local/.pgadmin
+    ports:
+      - 5050:80

@@ -1,0 +1,9 @@
+python-slugify==8.0.1
+python-decouple==3.8
+whitenoise==6.5.0
+
+# Django
+# ------------------------------------------------------------------------------
+django==4.2.3
+django-cleanup==8.0.0
+dj-database-url==2.0.0

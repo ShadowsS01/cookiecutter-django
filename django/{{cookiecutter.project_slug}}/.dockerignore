@@ -1,6 +1,3 @@
 .venv/
-.docker/postgres_data
-.docker/zsh
+venv/
 .git/
-docker-compose.yaml
-Dockerfile.dev
