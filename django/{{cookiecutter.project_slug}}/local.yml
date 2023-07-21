@@ -2,6 +2,7 @@ version: "3.8"
 
 volumes:
   {{ cookiecutter.project_slug }}_local_postgres_data: {}
+  {{ cookiecutter.project_slug }}_local_postgres_data_backups: {}
 
 services:
   django:
@@ -29,6 +30,7 @@ services:
     container_name: {{ cookiecutter.project_slug }}_local_postgres
     volumes:
       - {{ cookiecutter.project_slug }}_local_postgres_data:/var/lib/postgresql/data
+      - {{ cookiecutter.project_slug }}_local_postgres_data_backups:/backups
     env_file:
       - ./.envs/.local/.postgres
 

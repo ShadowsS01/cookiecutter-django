@@ -2,6 +2,7 @@ version: "3"
 
 volumes:
   production_postgres_data: {}
+  production_postgres_data_backups: {}
   production_django_media: {}
 
 services:
@@ -28,6 +29,7 @@ services:
     image: {{ cookiecutter.project_slug }}_production_postgres
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
+      - production_postgres_data_backups:/backups
     env_file:
       - ./.envs/.production/.postgres
 
