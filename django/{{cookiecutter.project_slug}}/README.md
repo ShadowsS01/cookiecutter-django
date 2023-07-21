@@ -16,10 +16,10 @@ Moved to [settings](./settings.md).
 python manage.py createsuperuser
 ```
 
-### Type checks
+## Deployment
 
-Running type checks with mypy:
+The following details how to deploy this application.
 
-```bash
-mypy {{cookiecutter.project_slug}}
-```
+### Docker
+
+See detailed [Docker documentation](./docker.md).
