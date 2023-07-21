@@ -25,7 +25,7 @@ RUN pip wheel --wheel-dir /usr/src/app/wheels  \
 FROM python as python-run-stage
 
 ARG BUILD_ENVIRONMENT=local
-ARG APP_HOME=/home/dev-user/app
+ARG APP_HOME=/app
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -77,7 +77,9 @@ RUN wget https://gist.github.com/ShadowsS01/ab9fdbb2cc4b6af40ef3627d4ba968a4/raw
   mv ./.p10k.zsh /home/dev-user
 
 # copy application code to WORKDIR
-COPY --chown=dev-user:dev-user . .
+COPY --chown=dev-user:dev-user . ${APP_HOME}
+
+RUN chown dev-user:dev-user ${APP_HOME}
 
 USER dev-user
 
@@ -95,4 +97,4 @@ RUN echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> ~/.zshrc && \
   echo "HISTFILE=~/.zsh_history" >> ~/.zshrc
 
 
-ENTRYPOINT ["source", "/entrypoint"]
+ENTRYPOINT ["/entrypoint"]

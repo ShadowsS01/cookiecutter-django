@@ -25,7 +25,7 @@
   "overrideCommand": true,
   "service": "django",
   "remoteUser": "dev-user",
-  "workspaceFolder": "/home/dev-user/app",
+  "workspaceFolder": "/app",
 
   "customizations": {
     "vscode": {

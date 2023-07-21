@@ -66,4 +66,4 @@ RUN chown django:django ${APP_HOME}
 
 USER django
 
-ENTRYPOINT ["source", "/entrypoint"]
+ENTRYPOINT ["/entrypoint"]

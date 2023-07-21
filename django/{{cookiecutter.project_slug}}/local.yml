@@ -11,15 +11,15 @@ services:
     image: {{ cookiecutter.project_slug }}_local_django
     container_name: {{ cookiecutter.project_slug }}_local_django
     env_file:
-      - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+      - ./.envs/.local/.django
     ports:
       - 8000:8000
     volumes:
-      - .:/home/dev-user/app:z
+      - .:/app:z
     depends_on:
       - postgres
-    command: ["/start"]
+    command: "/start"
 
   postgres:
     build:
