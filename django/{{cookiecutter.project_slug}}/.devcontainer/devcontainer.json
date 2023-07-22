@@ -48,8 +48,6 @@
           "linting.enabled": true,
           "linting.flake8Enabled": true,
           "linting.flake8Path": "/usr/local/bin/flake8",
-          "linting.mypyEnabled": true,
-          "linting.mypyPath": "/usr/local/bin/mypy",
           "linting.pycodestylePath": "/usr/local/bin/pycodestyle",
           // "linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
           "linting.pylintEnabled": true,
