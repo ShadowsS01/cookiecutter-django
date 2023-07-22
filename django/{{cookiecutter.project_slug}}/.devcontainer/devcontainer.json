@@ -52,7 +52,8 @@
           // "linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
           "linting.pylintEnabled": true,
           "linting.pylintPath": "/usr/local/bin/pylint"
-        }
+        },
+        "python.formatting.provider": "none"
       },
       "extensions": [
         // python
