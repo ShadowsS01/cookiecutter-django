@@ -2,9 +2,9 @@
 
 ## Prerequisites
 
-- Docker; if you don't have it yet, follow the [installation instructions](https://docs.docker.com/get-docker/#supported-platforms);
+- Docker; if you don't have it yet, follow the [installation instructions](https://docs.docker.com/get-docker/#supported-platforms).
 - Docker Compose; refer to the official documentation for the [installation guide](https://docs.docker.com/compose/install/).
-- Cookiecutter; refer to the official GitHub repository of [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
+- Cookiecutter; refer to the official GitHub repository of [Cookiecutter](https://github.com/cookiecutter/cookiecutter).
 
 ## Before Getting Started
 
@@ -24,7 +24,7 @@ This can take a while, especially the first time you run this particular command
 docker-compose -f local.yml build
 ```
 
-Generally, if you want to emulate production environment use `production.yml`` instead. And this is true for any other actions you might need to perform: whenever a switch is required, just do it!
+Generally, if you want to emulate production environment use `production.yml` instead. And this is true for any other actions you might need to perform: whenever a switch is required, just do it!
 
 ## Run the Stack
 
@@ -34,6 +34,12 @@ Open a terminal at the project root and run the following for local development:
 
 ```bash
 docker-compose -f local.yml up
+```
+
+You can also set the environment variable `COMPOSE_FILE` pointing to `local.yml` like this:
+
+```bash
+export COMPOSE_FILE=local.yml
 ```
 
 And then run:
