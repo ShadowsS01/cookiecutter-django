@@ -83,7 +83,6 @@ postgres:
     - local_postgres_data_backups:/backups
   env_file:
     - ./.envs/.local/.postgres
-
 # ...
 ```
 

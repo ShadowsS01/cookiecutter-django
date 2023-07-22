@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import json
 import os
 import random
@@ -21,9 +19,7 @@ HINT = "\x1b[3;33m"
 SUCCESS = "\x1b[1;32m [SUCCESS]: "
 
 
-def generate_random_string(
-    length, using_digits=False, using_ascii_letters=False, using_punctuation=False
-):
+def generate_random_string(length, using_digits=False, using_ascii_letters=False, using_punctuation=False):
     """
     Example:
         opting out for 50 symbol-long, [a-z][A-Z][0-9] string

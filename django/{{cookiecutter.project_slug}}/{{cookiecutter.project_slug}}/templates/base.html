@@ -1,45 +1,56 @@
-{% raw %}{% load static %}{% endraw %}
+{% raw %}
+  {% load static %}
 
-{% raw %}<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>
-      {% block title %}{% endblock title %} • {% endraw %}{{ cookiecutter.project_name }}{% raw %}
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="{% endraw %}{{ cookiecutter.description }}{% raw %}" />
-    <meta name="author" content="{% endraw %}{{ cookiecutter.author_name }}{% raw %}" />
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
-    {% block css %}
-      {% comment %}
-      <!-- Your stuff: Third-party CSS libraries go here -->
-      <!-- This file stores project-specific CSS -->
-      {% endcomment %}
-    {% endblock css %}
-    {% block javascript %}
-      {% comment %}
-      <!-- Your stuff: Third-party javascript libraries go here -->
-      <!-- place project specific Javascript in this file -->
-      {% endcomment %}
-    {% endblock javascript %}
-  </head>
-  <body>
-    {% block content %}
-      <h1>Hello World</h1>
-    {% endblock content %}
-    {% block inline_javascript %}
-      {% comment %}
-      Script tags with only code, no src (defer by default). To run
-      with a "defer" so that you run inline code:
-      <script>
-        window.addEventListener('DOMContentLoaded', () => {
-          /* Run whatever you want */
-        });
-      </script>
-      {% endcomment %}
-    {% endblock inline_javascript %}
-  </body>
-</html>
+{% endraw %}
+{% raw %}
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <title>
+        {% block title %}
+        {% endblock title %}
+        •
+      {% endraw %}
+      {{
+      cookiecutter.project_name }}
+      {% raw %}
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description"
+            content="{% endraw %}{{ cookiecutter.description }}{% raw %}" />
+      <meta name="author"
+            content="{% endraw %}{{ cookiecutter.author_name }}{% raw %}" />
+      <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+      {% block css %}
+        {% comment %}
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    <!-- This file stores project-specific CSS -->
+        {% endcomment %}
+      {% endblock css %}
+      {% block javascript %}
+        {% comment %}
+    <!-- Your stuff: Third-party javascript libraries go here -->
+    <!-- place project specific Javascript in this file -->
+        {% endcomment %}
+      {% endblock javascript %}
+    </head>
+    <body>
+      {% block content %}
+        <h1>Hello World</h1>
+      {% endblock content %}
+      {% block inline_javascript %}
+        {% comment %} Script
+    tags with only code, no src (defer by default). To run with a "defer" so
+    that you run inline code:
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        /* Run whatever you want */
+      });
+    </script>
+        {% endcomment %}
+      {% endblock inline_javascript %}
+    </body>
+  </html>
 {% endraw %}
