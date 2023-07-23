@@ -31,6 +31,7 @@
     "vscode": {
       "settings": {
         "editor.formatOnSave": true,
+        "python.formatting.provider": "none",
         "[python]": {
           "analysis.autoImportCompletions": true,
           "analysis.typeCheckingMode": "basic",
@@ -53,7 +54,17 @@
           "linting.pylintEnabled": true,
           "linting.pylintPath": "/usr/local/bin/pylint"
         },
-        "python.formatting.provider": "none"
+        "[django-html]": {
+          "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+          },
+          "djlint.enableLinting": true,
+          "djlint.profile": "django",
+          "editor.defaultFormatter": "monosans.djlint",
+          "editor.formatOnSave": false
+        }
       },
       "extensions": [
         // python
@@ -64,7 +75,8 @@
         "KevinRose.vsc-python-indent",
         "ms-python.black-formatter",
         // django
-        "batisteo.vscode-django"
+        "batisteo.vscode-django",
+        "monosans.djlint"
       ]
     }
   },
