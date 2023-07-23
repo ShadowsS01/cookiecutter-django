@@ -4,5 +4,6 @@
   "description": "Behold My Awesome Project!",
   "author_name": "My name",
   "domain_name": "example.com",
-  "email": "{{ cookiecutter.author_name.lower() | trim() |replace(' ', '-') }}@{{ cookiecutter.domain_name.lower() | trim() }}"
+  "email": "{{ cookiecutter.author_name.lower() | trim() |replace(' ', '-') }}@{{ cookiecutter.domain_name.lower() | trim() }}",
+  "use_pgadmin": "n"
 }

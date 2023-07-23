@@ -1,4 +1,0 @@
-# PgAdmin
-# ------------------------------------------------------------------------------
-PGADMIN_DEFAULT_EMAIL=postgres@email.com
-PGADMIN_DEFAULT_PASSWORD=postgres
