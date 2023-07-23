@@ -3,16 +3,30 @@ version: "3"
 volumes:
   production_postgres_data: {}
   production_postgres_data_backups: {}
+  {%- if cookiecutter.cloud_provider == 'None' %}
   production_django_media: {}
+  {%- endif %}
 
 services:
   django:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
+      {%- if cookiecutter.use_whitenoise == 'n' %}
+      args:
+        # These variable can be defined in an .env file in the root of the repo
+        {%- if cookiecutter.cloud_provider == 'AWS' %}
+        DJANGO_AWS_STORAGE_BUCKET_NAME: ${DJANGO_AWS_STORAGE_BUCKET_NAME}
+        DJANGO_AWS_S3_CUSTOM_DOMAIN: ${DJANGO_AWS_S3_CUSTOM_DOMAIN}
+        {%- elif cookiecutter.cloud_provider == 'GCP' %}
+        DJANGO_GCP_STORAGE_BUCKET_NAME: ${DJANGO_GCP_STORAGE_BUCKET_NAME}
+        {%- endif %}
+      {%- endif %}
     image: {{ cookiecutter.project_slug }}_production_django
+    {%- if cookiecutter.cloud_provider == 'None' %}
     volumes:
       - production_django_media:/app/{{ cookiecutter.project_slug }}/media
+    {%- endif %}
     depends_on:
       - postgres
     ports:
@@ -33,6 +47,19 @@ services:
     env_file:
       - ./.envs/.production/.postgres
 
+{%- if cookiecutter.cloud_provider == 'AWS' %}
+
+  awscli:
+    build:
+      context: .
+      dockerfile: ./compose/production/aws/Dockerfile
+    env_file:
+      - ./.envs/.production/.django
+    volumes:
+      - production_postgres_data_backups:/backups:z
+  {%- endif %}
+  {%- if cookiecutter.cloud_provider == 'None' %}
+
   nginx:
     build:
       context: .
@@ -40,7 +67,6 @@ services:
     image: {{ cookiecutter.project_slug }}_local_nginx
     depends_on:
       - django
-    ports:
-      - 5050:80
     volumes:
       - production_django_media:/usr/share/nginx/media:ro
+  {%- endif %}

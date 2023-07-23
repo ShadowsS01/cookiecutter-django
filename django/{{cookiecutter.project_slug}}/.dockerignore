@@ -3,3 +3,4 @@ venv/
 .git/
 .gitignore
 .editorconfig
+.pre-commit-config.yaml

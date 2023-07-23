@@ -10,12 +10,13 @@ SECRET_KEY = config("DJANGO_SECRET_KEY", default="!!!SET DJANGO_SECRET_KEY!!!")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
+{%- if cookiecutter.use_whitenoise == 'y' %}
 
 # WhiteNoise
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
 INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa: F405
-
+{% endif %}
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------

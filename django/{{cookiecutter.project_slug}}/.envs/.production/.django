@@ -10,6 +10,18 @@ DJANGO_ALLOWED_HOSTS=.{{ cookiecutter.domain_name }}
 # TIP: better off using DNS, however, redirect is OK too
 DJANGO_SECURE_SSL_REDIRECT=False
 
+{% if cookiecutter.cloud_provider == 'AWS' %}
+# AWS
+# ------------------------------------------------------------------------------
+DJANGO_AWS_ACCESS_KEY_ID=
+DJANGO_AWS_SECRET_ACCESS_KEY=
+DJANGO_AWS_STORAGE_BUCKET_NAME=
+{% elif cookiecutter.cloud_provider == 'GCP' %}
+# GCP
+# ------------------------------------------------------------------------------
+GOOGLE_APPLICATION_CREDENTIALS=
+DJANGO_GCP_STORAGE_BUCKET_NAME=
+{% endif %}
 
 # Gunicorn
 # ------------------------------------------------------------------------------

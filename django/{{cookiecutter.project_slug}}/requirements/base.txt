@@ -1,7 +1,9 @@
 python-slugify==8.0.1
 Pillow==10.0.0
 python-decouple==3.8
+{%- if cookiecutter.use_whitenoise == 'y' %}
 whitenoise==6.5.0
+{%- endif %}
 argon2-cffi==21.3.0
 
 # Django

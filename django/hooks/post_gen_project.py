@@ -1,4 +1,3 @@
-import json
 import os
 import random
 import shutil
@@ -132,12 +131,30 @@ def set_flags_in_settings_files():
     set_django_secret_key(os.path.join("config", "settings", "local.py"))
 
 
+def remove_aws_dockerfile():
+    shutil.rmtree(os.path.join("compose", "production", "aws"))
+
+
+def remove_storages_module():
+    os.remove(os.path.join("{{cookiecutter.project_slug}}", "utils", "storages.py"))
+
+
 def main():
     set_flags_in_envs(generate_random_user())
     set_flags_in_settings_files()
 
     append_to_gitignore_file(".env")
     append_to_gitignore_file(".envs/*")
+
+    if "{{ cookiecutter.cloud_provider}}" != "AWS":
+        remove_aws_dockerfile()
+
+    if "{{ cookiecutter.cloud_provider }}" == "None":
+        print(
+            WARNING + "You chose to not use any cloud providers nor Docker, "
+            "media files won't be served in production." + TERMINATOR
+        )
+        remove_storages_module()
 
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 
