@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{% block title %}{% endblock %}
+    <title>
+      {% block title %}{% endblock title %}
       • {% endraw %}{{ cookiecutter.project_name }}{% raw %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,16 +24,16 @@
         <!-- Your stuff: Third-party CSS libraries go here -->
         <!-- This file stores project-specific CSS -->
       {% endcomment %}
-    {% endblock %}
+    {% endblock css %}
     {% block javascript %}
       {% comment %}
         <!-- Your stuff: Third-party javascript libraries go here -->
         <!-- place project specific Javascript in this file -->
       {% endcomment %}
-    {% endblock %}
+    {% endblock javascript %}
   </head>
   <body>
-    {% block content %}{% endblock %}
+    {% block content %}{% endblock content %}
     {% block inline_javascript %}
       {% comment %}
         Script tags with only code, no src (defer by default).
@@ -43,7 +44,7 @@
             });
           </script>
       {% endcomment %}
-    {% endblock %}
+    {% endblock inline_javascript %}
   </body>
 </html>
 {% endraw %}
