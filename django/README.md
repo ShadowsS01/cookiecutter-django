@@ -7,7 +7,7 @@ A simple Django template with cookiecutter
 First, get Cookiecutter.
 
 ```bash
-pip install "cookiecutter>=1.7.0"
+pip install cookiecutter
 ```
 
 Now run it against this repo:
