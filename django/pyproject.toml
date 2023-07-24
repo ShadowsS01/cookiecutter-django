@@ -9,8 +9,6 @@ target-version = ['py311']
 profile = "black"
 line_length = 119
 known_first_party = [
-    "tests",
-    "scripts",
     "hooks",
 ]
 
