@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import os
 import random
 import shutil
@@ -45,10 +47,8 @@ def set_flag(file_path, flag, value=None, formatted=None, *args, **kwargs):
     if value is None:
         random_string = generate_random_string(*args, **kwargs)
         if random_string is None:
-            print(
-                "We couldn't find a secure pseudo-random number generator on your "
-                f"system. Please, make sure to manually {flag} later."
-            )
+            print("We couldn't find a secure pseudo-random number generator on your system.", end=" ")
+            print(f"Please, make sure to manually {flag} later.")
             random_string = flag
         if formatted is not None:
             random_string = formatted.format(random_string)
@@ -64,18 +64,17 @@ def set_flag(file_path, flag, value=None, formatted=None, *args, **kwargs):
 
 
 def set_django_secret_key(file_path):
-    django_secret_key = set_flag(
+    return set_flag(
         file_path,
         "!!!SET DJANGO_SECRET_KEY!!!",
         length=64,
         using_digits=True,
         using_ascii_letters=True,
     )
-    return django_secret_key
 
 
 def set_django_admin_url(file_path):
-    django_admin_url = set_flag(
+    return set_flag(
         file_path,
         "!!!SET DJANGO_ADMIN_URL!!!",
         formatted="{}/",
@@ -83,7 +82,6 @@ def set_django_admin_url(file_path):
         using_digits=True,
         using_ascii_letters=True,
     )
-    return django_admin_url
 
 
 def generate_random_user():
@@ -91,12 +89,11 @@ def generate_random_user():
 
 
 def set_postgres_user(file_path, value):
-    postgres_user = set_flag(file_path, "!!!SET POSTGRES_USER!!!", value=value)
-    return postgres_user
+    return set_flag(file_path, "!!!SET POSTGRES_USER!!!", value=value)
 
 
 def set_postgres_password(file_path, value=None):
-    postgres_password = set_flag(
+    return set_flag(
         file_path,
         "!!!SET POSTGRES_PASSWORD!!!",
         value=value,
@@ -104,7 +101,6 @@ def set_postgres_password(file_path, value=None):
         using_digits=True,
         using_ascii_letters=True,
     )
-    return postgres_password
 
 
 def append_to_gitignore_file(ignored_line):
@@ -156,7 +152,7 @@ def main():
         )
         remove_storages_module()
 
-    print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
+    print(f"{SUCCESS}Project initialized, keep up the good work!{TERMINATOR}")
 
 
 if __name__ == "__main__":
