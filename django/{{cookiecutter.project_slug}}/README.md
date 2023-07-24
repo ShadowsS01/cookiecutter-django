@@ -4,7 +4,7 @@
 
 ## Settings
 
-Moved to [settings](./settings.md).
+Moved to [settings](./docs/settings.md).
 
 ## Basic Commands
 
@@ -22,4 +22,4 @@ The following details how to deploy this application.
 
 ### Docker
 
-See detailed [Docker documentation](./docker.md).
+See detailed [Docker documentation](./docs/docker.md).
