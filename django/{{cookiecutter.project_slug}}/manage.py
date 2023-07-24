@@ -13,12 +13,12 @@ def main():
     except ImportError:
         try:
             import django  # noqa
-        except ImportError:
+        except ImportError as e:
             raise ImportError(
                 "Couldn't import Django. Are you sure it's installed and "
                 "available on your PYTHONPATH environment variable? Did you "
                 "forget to activate a virtual environment?"
-            )
+            ) from e
         raise
 
     current_path = Path(__file__).parent.resolve()
