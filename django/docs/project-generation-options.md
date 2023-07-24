@@ -15,6 +15,7 @@ This page describes all the template options that will be prompted by the [cooki
 - **email**: The email address you want to identify yourself in the project.
 
 - **postgresql_version**: Select a [PostgreSQL](https://www.postgresql.org/docs/) version to use. The choices are:
+
   1. 15
   2. 14
   3. 13
@@ -23,6 +24,7 @@ This page describes all the template options that will be prompted by the [cooki
   6. 10
 
 - **cloud_provider**: Select a cloud provider for static & media files. The choices are:
+
   1. [AWS](https://aws.amazon.com/s3/)
   2. [GCP](https://cloud.google.com/storage)
   3. None
