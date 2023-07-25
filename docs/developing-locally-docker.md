@@ -11,7 +11,7 @@
 Generate a new django project:
 
 ```bash
-cookiecutter --directory django https://github.com/ShadowsS01/templates
+cookiecutter https://github.com/ShadowsS01/cookiecutter-django
 ```
 
 For more information refer to [Project Generation Options](./project-generation-options.md).

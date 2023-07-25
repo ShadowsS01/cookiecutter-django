@@ -16,7 +16,7 @@ pip install cookiecutter
 Now run it against this repo:
 
 ```bash
-cookiecutter --directory django https://github.com/ShadowsS01/templates
+cookiecutter https://github.com/ShadowsS01/cookiecutter-django
 ```
 
 You'll be prompted for some values. Provide them, then a Django project will be created for you.
