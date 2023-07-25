@@ -3,10 +3,18 @@
 Werkzeug==2.3.6
 psycopg[binary]==3.1.9
 
+# Testing
+# ------------------------------------------------------------------------------
+mypy==1.4.1
+django-stubs==4.2.3
+pytest==7.4.0
+pytest-sugar==0.9.7
+
 # Code quality
 # ------------------------------------------------------------------------------
 flake8==6.0.0
 flake8-isort==6.0.0
+coverage==7.2.7
 black==23.7.0
 djlint==1.32.0
 pylint-django==2.5.3
@@ -16,3 +24,5 @@ pre-commit==3.3.3
 # ------------------------------------------------------------------------------
 django-debug-toolbar==4.1.0
 django-extensions==3.2.3
+django-coverage-plugin==3.1.0
+pytest-django==4.5.2

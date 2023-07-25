@@ -1,3 +1,19 @@
+# ==== pytest ====
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--ds=config.settings.test --reuse-db"
+python_files = [
+    "tests.py",
+    "test_*.py",
+]
+
+# ==== Coverage ====
+[tool.coverage.run]
+include = ["{{cookiecutter.project_slug}}/**"]
+omit = ["*/migrations/*", "*/tests/*"]
+plugins = ["django_coverage_plugin"]
+
+
 # ==== black ====
 [tool.black]
 line-length = 119
@@ -14,6 +30,26 @@ known_first_party = [
 ]
 skip = ["venv/", ".venv/"]
 skip_glob = ["**/migrations/*.py"]
+
+# ==== mypy ====
+[tool.mypy]
+python_version = "3.11"
+check_untyped_defs = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+plugins = [
+    "mypy_django_plugin.main",
+]
+
+[[tool.mypy.overrides]]
+# Django migrations should not produce any errors:
+module = "*.migrations.*"
+ignore_errors = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings.test"
 
 
 # ==== PyLint ====

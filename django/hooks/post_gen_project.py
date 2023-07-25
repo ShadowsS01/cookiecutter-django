@@ -123,6 +123,7 @@ def set_flags_in_envs(postgres_user):
 
 def set_flags_in_settings_files():
     set_django_secret_key(os.path.join("config", "settings", "local.py"))
+    set_django_secret_key(os.path.join("config", "settings", "test.py"))
 
 
 def remove_aws_dockerfile():
