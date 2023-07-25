@@ -79,7 +79,7 @@ GS_DEFAULT_ACL = "publicRead"
 {% if cookiecutter.cloud_provider != 'None' or cookiecutter.use_whitenoise == 'y' %}
 # STATIC
 # ------------------------
-{%- endif %}
+{% endif -%}
 {% if cookiecutter.use_whitenoise == 'y' -%}
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 {% elif cookiecutter.cloud_provider == 'AWS' -%}
@@ -90,12 +90,12 @@ STATIC_URL = f"https://{aws_s3_domain}/static/"
 STATICFILES_STORAGE = "{{cookiecutter.project_slug}}.utils.storages.StaticRootGoogleCloudStorage"
 COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
 STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
-{%- endif %}
+{% endif -%}
 
-{% if cookiecutter.cloud_provider != 'None' -%}
+{% if cookiecutter.cloud_provider != 'None' %}
 # MEDIA
 # ------------------------------------------------------------------------------
-{% endif %}
+{%- endif %}
 {%- if cookiecutter.cloud_provider == 'AWS' %}
 DEFAULT_FILE_STORAGE = "{{cookiecutter.project_slug}}.utils.storages.MediaRootS3Boto3Storage"
 MEDIA_URL = f"https://{aws_s3_domain}/media/"
@@ -108,13 +108,12 @@ MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
 ADMIN_URL = config("DJANGO_ADMIN_URL")
-
 {% if cookiecutter.use_whitenoise == 'n' %}
 # Collectfast
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
 INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa: F405
-{% endif %}
+{%- endif %}
 
 # Your stuff...
 # ------------------------------------------------------------------------------

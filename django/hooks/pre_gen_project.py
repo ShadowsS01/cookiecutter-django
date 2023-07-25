@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import sys
 
 TERMINATOR = "\x1b[0m"

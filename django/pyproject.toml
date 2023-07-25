@@ -1,3 +1,17 @@
+# ==== pytest ====
+[tool.pytest.ini_options]
+addopts = "-v --tb=short"
+norecursedirs = [
+    ".tox",
+    ".git",
+    "*/migrations/*",
+    "*/static/*",
+    "docs",
+    "venv",
+    ".venv",
+    "*/{{cookiecutter.project_slug}}/*",
+]
+
 # ==== black ====
 [tool.black]
 line-length = 119
@@ -9,6 +23,7 @@ target-version = ['py311']
 profile = "black"
 line_length = 119
 known_first_party = [
+    "tests",
     "hooks",
 ]
 
