@@ -18,13 +18,13 @@ For configuration purposes, the following table maps environment variables to th
 
 The following table lists settings and their defaults for third-party applications, which may or may not be part of your project:
 
-| Environment Variable                  | Django Setting              | Development Default | Production Default   |
-| ------------------------------------- | --------------------------- | ------------------- | -------------------- |
-| DJANGO_AWS_ACCESS_KEY_ID              | AWS_ACCESS_KEY_ID           | n/a                 | raises error         |
-| DJANGO_AWS_SECRET_ACCESS_KEY          | AWS_SECRET_ACCESS_KEY       | n/a                 | raises error         |
-| DJANGO_AWS_STORAGE_BUCKET_NAME        | AWS_STORAGE_BUCKET_NAME     | n/a                 | raises error         |
-| DJANGO_AWS_S3_REGION_NAME             | AWS_S3_REGION_NAME          | n/a                 | None                 |
-| DJANGO_AWS_S3_CUSTOM_DOMAIN           | AWS_S3_CUSTOM_DOMAIN        | n/a                 | None                 |
-| DJANGO_AWS_S3_MAX_MEMORY_SIZE         | AWS_S3_MAX_MEMORY_SIZE      | n/a                 | 100_000_000          |
-| DJANGO_GCP_STORAGE_BUCKET_NAME        | GS_BUCKET_NAME              | n/a                 | raises error         |
-| GOOGLE_APPLICATION_CREDENTIALS        | n/a                         | n/a                 | raises error         |
+| Environment Variable           | Django Setting          | Development Default | Production Default |
+| ------------------------------ | ----------------------- | ------------------- | ------------------ |
+| DJANGO_AWS_ACCESS_KEY_ID       | AWS_ACCESS_KEY_ID       | n/a                 | raises error       |
+| DJANGO_AWS_SECRET_ACCESS_KEY   | AWS_SECRET_ACCESS_KEY   | n/a                 | raises error       |
+| DJANGO_AWS_STORAGE_BUCKET_NAME | AWS_STORAGE_BUCKET_NAME | n/a                 | raises error       |
+| DJANGO_AWS_S3_REGION_NAME      | AWS_S3_REGION_NAME      | n/a                 | None               |
+| DJANGO_AWS_S3_CUSTOM_DOMAIN    | AWS_S3_CUSTOM_DOMAIN    | n/a                 | None               |
+| DJANGO_AWS_S3_MAX_MEMORY_SIZE  | AWS_S3_MAX_MEMORY_SIZE  | n/a                 | 100_000_000        |
+| DJANGO_GCP_STORAGE_BUCKET_NAME | GS_BUCKET_NAME          | n/a                 | raises error       |
+| GOOGLE_APPLICATION_CREDENTIALS | n/a                     | n/a                 | raises error       |
