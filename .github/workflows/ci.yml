@@ -36,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
 
-    name: "Docker"
+    name: "Docker basic"
     runs-on: ubuntu-latest
     env:
       DOCKER_BUILDKIT: 1
@@ -50,5 +50,5 @@ jobs:
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Docker test
+      - name: Docker basic test
         run: sh tests/test_docker.sh

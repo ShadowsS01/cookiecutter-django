@@ -11,7 +11,7 @@ mkdir -p .cache/docker
 cd .cache/docker
 
 # create the project using the default settings in cookiecutter.json
-cookiecutter ../../ --no-input "$@"
+cookiecutter ../../ --no-input --overwrite-if-exists "$@"
 cd my_awesome_project
 
 # make sure all images build
@@ -25,8 +25,8 @@ docker compose -f local.yml run django pytest -p no:cacheprovider
 
 # return non-zero status code if there are migrations that have not been created
 docker compose -f local.yml run django python manage.py makemigrations --dry-run --check || {
-  echo "ERROR: there were changes in the models, but migration listed above have not been created and are not saved in version control"
-  exit 1
+    echo "ERROR: there were changes in the models, but migration listed above have not been created and are not saved in version control"
+    exit 1
 }
 
 # Make sure the check doesn't raise any warnings
