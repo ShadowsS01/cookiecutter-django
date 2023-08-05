@@ -50,5 +50,5 @@ jobs:
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Docker
+      - name: Docker test
         run: sh tests/test_docker.sh
