@@ -21,7 +21,7 @@ docker compose -f local.yml build
 docker compose -f local.yml run django mypy my_awesome_project
 
 # run the project's tests
-docker compose -f local.yml run django pytest
+docker compose -f local.yml run django pytest -p no:cacheprovider
 
 # return non-zero status code if there are migrations that have not been created
 docker compose -f local.yml run django python manage.py makemigrations --dry-run --check || {
