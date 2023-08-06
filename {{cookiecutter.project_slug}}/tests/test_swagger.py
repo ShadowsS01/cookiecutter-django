@@ -16,11 +16,13 @@ def test_swagger_accessible_by_admin(admin_client):
 def test_swagger_ui_not_accessible_by_normal_user(client):
     {%- if cookiecutter.rest_framework == 'DRF' %}
     url = reverse("api-docs")
+    expected_status_code = 403
     {%- elif cookiecutter.rest_framework == 'DNRF' %}
     url = reverse("api-1.0.0:openapi-view")
+    expected_status_code = 302
     {%- endif %}
     response = client.get(url)
-    assert response.status_code == 403
+    assert response.status_code == expected_status_code
 
 
 def test_api_schema_generated_successfully(admin_client):
