@@ -7,6 +7,7 @@
   "email": "{{ cookiecutter.author_name.lower() | trim() |replace(' ', '-') }}@{{ cookiecutter.domain_name.lower() | trim() }}",
   "postgresql_version": ["15", "14", "13", "12", "11", "10"],
   "cloud_provider": ["AWS", "GCP", "None"],
+  "rest_framework": ["None", "DRF", "DNRF"],
   "use_whitenoise": "n",
   "use_pgadmin": "n"
 }

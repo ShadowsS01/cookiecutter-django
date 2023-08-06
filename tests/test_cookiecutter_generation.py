@@ -54,6 +54,9 @@ SUPPORTED_COMBINATIONS = [
     # Note: cloud_provider=None AND use_whitenoise=n is not supported
     {"use_whitenoise": "y"},
     {"use_whitenoise": "n"},
+    {"rest_framework": "None"},
+    {"rest_framework": "DRF"},
+    {"rest_framework": "DNRF"},
 ]
 
 UNSUPPORTED_COMBINATIONS = [

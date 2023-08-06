@@ -31,6 +31,12 @@ This page describes all the template options that will be prompted by the [cooki
 
   If you choose no cloud provider and docker, the production stack will serve the media files via an nginx Docker service. Without Docker, the media files won't work.
 
+- **rest_framework**: Select a REST API framework. The choices are:
+
+  - None
+  - [DRF (Django REST framework)](https://www.django-rest-framework.org/)
+  - [DNRF (Django Ninja REST framework)](https://django-ninja.rest-framework.com/)
+
 - **use_whitenoise**: Indicates whether the project should be configured to use [WhiteNoise](https://github.com/evansd/whitenoise).
 
 - **use_pgadmin**: Indicates whether the project should be configured to use [pgAdmin](https://www.pgadmin.org/).

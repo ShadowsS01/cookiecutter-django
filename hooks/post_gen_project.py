@@ -130,6 +130,11 @@ def remove_aws_dockerfile():
     shutil.rmtree(os.path.join("compose", "production", "aws"))
 
 
+def remove_api_starter_files():
+    os.remove(os.path.join("config", "api.py"))
+    os.remove(os.path.join("tests", "test_swagger.py"))
+
+
 def remove_storages_module():
     os.remove(os.path.join("{{cookiecutter.project_slug}}", "utils", "storages.py"))
 
@@ -150,6 +155,9 @@ def main():
             "media files won't be served in production." + TERMINATOR
         )
         remove_storages_module()
+
+    if "{{ cookiecutter.rest_framework }}" == "None":
+        remove_api_starter_files()
 
     print(f"{SUCCESS}Project initialized, keep up the good work!{TERMINATOR}")
 

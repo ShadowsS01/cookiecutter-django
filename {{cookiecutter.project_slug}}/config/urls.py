@@ -4,12 +4,38 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+{%- if cookiecutter.rest_framework == 'DRF' %}
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from rest_framework.authtoken.views import obtain_auth_token
+{%- elif cookiecutter.rest_framework == 'DNRF' %}
+from .api import api
+{%- endif %}
+
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(settings.ADMIN_URL, admin.site.urls),
+{%- if cookiecutter.rest_framework == 'DNRF' %}
+    # API base url
+    path("api/", api.urls),
+{%- endif %}
+    # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+{% if cookiecutter.rest_framework == 'DRF' %}
+# API URLS
+urlpatterns += [
+    # API base url
+    path("api/", include("config.api")),
+    # DRF auth token
+    path("auth-token/", obtain_auth_token),
+    path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="api-schema"),
+        name="api-docs",
+    ),
+]
+{%- endif %}
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

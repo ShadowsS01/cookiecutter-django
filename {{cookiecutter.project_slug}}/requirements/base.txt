@@ -11,3 +11,15 @@ argon2-cffi==21.3.0
 django==4.2.4
 django-cleanup==8.0.0
 dj-database-url==2.0.0
+{%- if cookiecutter.rest_framework == 'DRF' %}
+# Django REST Framework
+djangorestframework==3.14.0
+django-cors-headers==4.2.0
+# DRF-spectacular for api documentation
+drf-spectacular==0.26.4
+{%- elif cookiecutter.rest_framework == 'DNRF' %}
+# Django Ninja REST framework
+django-ninja==0.22.2
+orjson==3.9.3
+django-cors-headers==4.2.0
+{%- endif %}

@@ -114,6 +114,13 @@ ADMIN_URL = config("DJANGO_ADMIN_URL")
 # https://github.com/antonagestam/collectfast#installation
 INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa: F405
 {%- endif %}
-
+{% if cookiecutter.rest_framework == 'DRF' -%}
+# django-rest-framework
+# -------------------------------------------------------------------------------
+# Tools that generate code samples can use SERVERS to point to the correct domain
+SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa: F405
+    {"url": "https://{{ cookiecutter.domain_name }}", "description": "Production server"},
+]
+{%- endif %}
 # Your stuff...
 # ------------------------------------------------------------------------------
