@@ -37,6 +37,8 @@ This page describes all the template options that will be prompted by the [cooki
   - [DRF (Django REST framework)](https://www.django-rest-framework.org/)
   - [DNRF (Django Ninja REST framework)](https://django-ninja.rest-framework.com/)
 
+- **use_sentry**: Indicates whether the project should be configured to use [Sentry](https://github.com/getsentry/sentry).
+
 - **use_whitenoise**: Indicates whether the project should be configured to use [WhiteNoise](https://github.com/evansd/whitenoise).
 
 - **use_pgadmin**: Indicates whether the project should be configured to use [pgAdmin](https://www.pgadmin.org/).
