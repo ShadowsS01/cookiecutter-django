@@ -2,5 +2,7 @@
 venv/
 .git/
 .gitignore
+.gitattributes
+.github
 .editorconfig
 .pre-commit-config.yaml
