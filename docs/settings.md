@@ -28,3 +28,7 @@ The following table lists settings and their defaults for third-party applicatio
 | DJANGO_AWS_S3_MAX_MEMORY_SIZE  | AWS_S3_MAX_MEMORY_SIZE  | n/a                 | 100_000_000        |
 | DJANGO_GCP_STORAGE_BUCKET_NAME | GS_BUCKET_NAME          | n/a                 | raises error       |
 | GOOGLE_APPLICATION_CREDENTIALS | n/a                     | n/a                 | raises error       |
+| SENTRY_DSN                     | SENTRY_DSN              | n/a                 | raises error       |
+| SENTRY_ENVIRONMENT             | n/a                     | n/a                 | production         |
+| SENTRY_TRACES_SAMPLE_RATE      | n/a                     | n/a                 | 0.0                |
+| DJANGO_SENTRY_LOG_LEVEL        | SENTRY_LOG_LEVEL        | n/a                 | logging.INFO       |

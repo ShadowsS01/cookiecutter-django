@@ -26,3 +26,8 @@ DJANGO_GCP_STORAGE_BUCKET_NAME=
 # Gunicorn
 # ------------------------------------------------------------------------------
 WEB_CONCURRENCY=4
+{% if cookiecutter.use_sentry == 'y' %}
+# Sentry
+# ------------------------------------------------------------------------------
+SENTRY_DSN=
+{% endif %}
