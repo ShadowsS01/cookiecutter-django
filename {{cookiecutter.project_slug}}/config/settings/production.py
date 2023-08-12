@@ -22,11 +22,9 @@ ALLOWED_HOSTS = config(
     default=["{{ cookiecutter.domain_name }}"],
 )
 
-
 # DATABASES
 # ------------------------------------------------------------------------------
 DATABASES["default"]["CONN_MAX_AGE"] = config("CONN_MAX_AGE", default=60)  # noqa: F405
-
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -113,12 +111,96 @@ MEDIA_URL = f"https://{aws_s3_domain}/media/"
 DEFAULT_FILE_STORAGE = "{{cookiecutter.project_slug}}.utils.storages.MediaRootGoogleCloudStorage"
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 {%- endif %}
-
+{% if cookiecutter.mail_service != 'None' %}
+# EMAIL
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
+DEFAULT_FROM_EMAIL = config(
+    "DJANGO_DEFAULT_FROM_EMAIL",
+    default="{{cookiecutter.project_name}} <noreply@{{cookiecutter.domain_name}}>",
+)
+# https://docs.djangoproject.com/en/dev/ref/settings/#server-email
+SERVER_EMAIL = config("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
+EMAIL_SUBJECT_PREFIX = config(
+    "DJANGO_EMAIL_SUBJECT_PREFIX",
+    default="[{{cookiecutter.project_name}}] ",
+)
+{% endif %}
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
 ADMIN_URL = config("DJANGO_ADMIN_URL")
-{% if cookiecutter.use_whitenoise == 'n' %}
+
+{% if cookiecutter.mail_service != 'None' %}
+# Anymail
+# ------------------------------------------------------------------------------
+# https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
+INSTALLED_APPS += ["anymail"]  # noqa: F405
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+# https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
+{%- if cookiecutter.mail_service == 'Mailgun' %}
+# https://anymail.readthedocs.io/en/stable/esps/mailgun/
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+ANYMAIL = {
+    "MAILGUN_API_KEY": config("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": config("MAILGUN_DOMAIN"),
+    "MAILGUN_API_URL": config("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
+}
+{%- elif cookiecutter.mail_service == 'Amazon SES' %}
+# https://anymail.readthedocs.io/en/stable/esps/amazon_ses/
+EMAIL_BACKEND = "anymail.backends.amazon_ses.EmailBackend"
+ANYMAIL = {}
+{%- elif cookiecutter.mail_service == 'Mailjet' %}
+# https://anymail.readthedocs.io/en/stable/esps/mailjet/
+EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
+ANYMAIL = {
+    "MAILJET_API_KEY": config("MAILJET_API_KEY"),
+    "MAILJET_SECRET_KEY": config("MAILJET_SECRET_KEY"),
+}
+{%- elif cookiecutter.mail_service == 'Mandrill' %}
+# https://anymail.readthedocs.io/en/stable/esps/mandrill/
+EMAIL_BACKEND = "anymail.backends.mandrill.EmailBackend"
+ANYMAIL = {
+    "MANDRILL_API_KEY": config("MANDRILL_API_KEY"),
+    "MANDRILL_API_URL": config("MANDRILL_API_URL", default="https://mandrillapp.com/api/1.0"),
+}
+{%- elif cookiecutter.mail_service == 'Postmark' %}
+# https://anymail.readthedocs.io/en/stable/esps/postmark/
+EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
+ANYMAIL = {
+    "POSTMARK_SERVER_TOKEN": config("POSTMARK_SERVER_TOKEN"),
+    "POSTMARK_API_URL": config("POSTMARK_API_URL", default="https://api.postmarkapp.com/"),
+}
+{%- elif cookiecutter.mail_service == 'Sendgrid' %}
+# https://anymail.readthedocs.io/en/stable/esps/sendgrid/
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+ANYMAIL = {
+    "SENDGRID_API_KEY": config("SENDGRID_API_KEY"),
+    "SENDGRID_API_URL": config("SENDGRID_API_URL", default="https://api.sendgrid.com/v3/"),
+}
+{%- elif cookiecutter.mail_service == 'SendinBlue' %}
+# https://anymail.readthedocs.io/en/stable/esps/sendinblue/
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+ANYMAIL = {
+    "SENDINBLUE_API_KEY": config("SENDINBLUE_API_KEY"),
+    "SENDINBLUE_API_URL": config("SENDINBLUE_API_URL", default="https://api.sendinblue.com/v3/"),
+}
+{%- elif cookiecutter.mail_service == 'SparkPost' %}
+# https://anymail.readthedocs.io/en/stable/esps/sparkpost/
+EMAIL_BACKEND = "anymail.backends.sparkpost.EmailBackend"
+ANYMAIL = {
+    "SPARKPOST_API_KEY": config("SPARKPOST_API_KEY"),
+    "SPARKPOST_API_URL": config("SPARKPOST_API_URL", default="https://api.sparkpost.com/api/v1"),
+}
+{%- elif cookiecutter.mail_service == 'Other SMTP' %}
+# https://anymail.readthedocs.io/en/stable/esps
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+ANYMAIL = {}
+{%- endif %}
+{% endif %}
+
+{%- if cookiecutter.use_whitenoise == 'n' %}
 # Collectfast
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation

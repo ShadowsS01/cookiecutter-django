@@ -9,6 +9,19 @@ DEBUG = True
 SECRET_KEY = config("DJANGO_SECRET_KEY", default="!!!SET DJANGO_SECRET_KEY!!!")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+{% if cookiecutter.mail_service != 'None' %}
+# EMAIL
+# ------------------------------------------------------------------------------
+{% if cookiecutter.use_mailhog == 'y' -%}
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-host
+EMAIL_HOST = config("EMAIL_HOST", default="mailhog")
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-port
+EMAIL_PORT = 1025
+{%- else -%}
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+EMAIL_BACKEND = config("DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
+{%- endif %}
+{%- endif %}
 
 {%- if cookiecutter.use_whitenoise == 'y' %}
 

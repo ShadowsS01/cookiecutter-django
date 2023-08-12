@@ -47,7 +47,7 @@ services:
     env_file:
       - ./.envs/.production/.postgres
 
-{%- if cookiecutter.cloud_provider == 'AWS' %}
+  {%- if cookiecutter.cloud_provider == 'AWS' %}
 
   awscli:
     build:

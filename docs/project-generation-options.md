@@ -36,6 +36,21 @@ This page describes all the template options that will be prompted by the [cooki
   - None
   - [DRF (Django REST framework)](https://www.django-rest-framework.org/)
   - [DNRF (Django Ninja REST framework)](https://django-ninja.rest-framework.com/)
+  
+- **mail_service**: Select an email service that Django-Anymail provides:
+
+  - [Mailgun](https://www.mailgun.com/)
+  - [Amazon SES](https://aws.amazon.com/ses/)
+  - [Mailjet](https://www.mailjet.com/)
+  - [Mandrill](http://mandrill.com/)
+  - [Postmark](https://postmarkapp.com/)
+  - [SendGrid](https://sendgrid.com/)
+  - [SendinBlue](https://www.sendinblue.com/)
+  - [SparkPost](https://www.sparkpost.com/)
+  - [Other SMTP](https://anymail.readthedocs.io/en/stable/)
+  - None
+
+- **use_mailhog**: Indicates whether the project should be configured to use [MailHog](https://github.com/mailhog/MailHog).
 
 - **use_sentry**: Indicates whether the project should be configured to use [Sentry](https://github.com/getsentry/sentry).
 
