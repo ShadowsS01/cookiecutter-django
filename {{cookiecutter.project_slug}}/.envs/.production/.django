@@ -10,29 +10,29 @@ DJANGO_ALLOWED_HOSTS=.{{ cookiecutter.domain_name }}
 # TIP: better off using DNS, however, redirect is OK too
 DJANGO_SECURE_SSL_REDIRECT=False
 
-{%- if cookiecutter.mail_service != 'None' %}
+{% if cookiecutter.mail_service != 'None' %}
 # Email
 # ------------------------------------------------------------------------------
 DJANGO_SERVER_EMAIL=
-{% if cookiecutter.mail_service == 'Mailgun' %}
+{%- if cookiecutter.mail_service == 'Mailgun' %}
 MAILGUN_API_KEY=
 MAILGUN_DOMAIN=
-{% elif cookiecutter.mail_service == 'Mailjet' %}
+{%- elif cookiecutter.mail_service == 'Mailjet' %}
 MAILJET_API_KEY=
 MAILJET_SECRET_KEY=
-{% elif cookiecutter.mail_service == 'Mandrill' %}
+{%- elif cookiecutter.mail_service == 'Mandrill' %}
 MANDRILL_API_KEY=
-{% elif cookiecutter.mail_service == 'Postmark' %}
+{%- elif cookiecutter.mail_service == 'Postmark' %}
 POSTMARK_SERVER_TOKEN=
-{% elif cookiecutter.mail_service == 'Sendgrid' %}
+{%- elif cookiecutter.mail_service == 'Sendgrid' %}
 SENDGRID_API_KEY=
 SENDGRID_GENERATE_MESSAGE_ID=True
 SENDGRID_MERGE_FIELD_FORMAT=None
-{% elif cookiecutter.mail_service == 'SendinBlue' %}
+{%- elif cookiecutter.mail_service == 'SendinBlue' %}
 SENDINBLUE_API_KEY=
-{% elif cookiecutter.mail_service == 'SparkPost' %}
+{%- elif cookiecutter.mail_service == 'SparkPost' %}
 SPARKPOST_API_KEY=
-{% endif %}
+{%- endif %}
 {%- endif %}
 {% if cookiecutter.cloud_provider == 'AWS' %}
 # AWS
@@ -46,7 +46,6 @@ DJANGO_AWS_STORAGE_BUCKET_NAME=
 GOOGLE_APPLICATION_CREDENTIALS=
 DJANGO_GCP_STORAGE_BUCKET_NAME=
 {% endif %}
-
 # Gunicorn
 # ------------------------------------------------------------------------------
 WEB_CONCURRENCY=4
@@ -54,4 +53,4 @@ WEB_CONCURRENCY=4
 # Sentry
 # ------------------------------------------------------------------------------
 SENTRY_DSN=
-{% endif %}
+{%- endif %}
