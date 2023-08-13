@@ -65,7 +65,7 @@ docker-compose -f local.yml run --rm django python manage.py migrate
 docker-compose -f local.yml run --rm django python manage.py createsuperuser
 ```
 
-Here, `django` is the target service we are executing the commands against.
+Here, `django` is the target service we are executing the commands against. Also, please note that the `docker exec` does not work for running management commands.
 
 ## Configuring the Environment
 
@@ -93,7 +93,6 @@ The most important thing for us here now is `env_file` section enlisting `./.env
 ├── .local
 │   ├── .django
 │   ├── .postgres
-│   └── .pgadmin
 └── .production
     ├── .django
     └── .postgres
@@ -135,3 +134,37 @@ docker compose -f local.yml up
 #### django-debug-toolbar
 
 In order for `django-debug-toolbar` to work designate your Docker Machine IP with `INTERNAL_IPS` in `config/settings/local.py`.
+
+#### docker
+
+The `container_name` from the yml file can be used to check on containers with docker commands, for example:
+
+```bash
+docker logs <project_slug>_local_celeryworker
+docker top <project_slug>_local_celeryworker
+```
+
+Notice that the `container_name` is generated dynamically using your project slug as a prefix.
+
+### Mailhog
+
+When developing locally you can go with [MailHog](https://github.com/mailhog/MailHog/) for email testing provided `use_mailhog` was set to `y` on setup. To proceed,
+
+1. make sure `<project_slug>_local_mailhog` container is up and running;
+2. open up <http://127.0.0.1:8025>.
+
+### Celery tasks in local development
+
+If you need tasks to be executed on the main thread during development set `CELERY_TASK_ALWAYS_EAGER = True` in `config/settings/local.py`.
+
+Possible uses could be for testing, or ease of profiling with DJDT.
+
+### Celery Flower
+
+[Flower](https://github.com/mher/flower) is a “real-time monitor and web admin for Celery distributed task queue”.
+
+Prerequisites:
+
+- `use_celery` was set to `y` on project initialization.
+
+By default, it’s enabled both in local and production environments (`local.yml` and `production.yml` Docker Compose configs, respectively) through a `flower` service. For added security, `flower` requires its clients to provide authentication credentials specified as the corresponding environments’ `.envs/.local/.django` and `.envs/.production/.django` `CELERY_FLOWER_USER` and `CELERY_FLOWER_PASSWORD` environment variables. Check out <http://localhost:5555> and see for yourself.

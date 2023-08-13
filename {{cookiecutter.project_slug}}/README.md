@@ -44,6 +44,36 @@ open htmlcov/index.html
 pytest
 ```
 
+{%- if cookiecutter.use_celery == "y" %}
+
+### Celery
+
+This app comes with Celery.
+
+To run a celery worker:
+
+```bash
+cd {{cookiecutter.project_slug}}
+celery -A config.celery_app worker -l info
+```
+
+Please note: For Celery's import magic to work, it is important where the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
+
+To run [periodic tasks](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html), you'll need to start the celery beat scheduler service. You can start it as a standalone process:
+
+```bash
+cd {{cookiecutter.project_slug}}
+celery -A config.celery_app beat
+```
+
+or you can embed the beat service inside a worker with the -B option (not recommended for production use):
+
+```bash
+cd {{cookiecutter.project_slug}}
+celery -A config.celery_app worker -B -l info
+```
+
+{%- endif %}
 {%- if cookiecutter.use_mailhog == "y" %}
 
 ### Email Server
@@ -72,4 +102,4 @@ The following details how to deploy this application.
 
 ### Docker
 
-See detailed [Docker documentation](./docs/docker.md).
+See detailed [Docker documentation](https://github.com/ShadowsS01/cookiecutter-django/blob/master/docs/deployment-with-docker.md).

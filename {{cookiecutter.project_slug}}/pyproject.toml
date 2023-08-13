@@ -59,6 +59,9 @@ django_settings_module = "config.settings.test"
 [tool.pylint.MASTER]
 load-plugins = [
     "pylint_django",
+{%- if cookiecutter.use_celery == "y" %}
+    "pylint_celery",
+{%- endif %}
 ]
 django-settings-module = "config.settings.local"
 

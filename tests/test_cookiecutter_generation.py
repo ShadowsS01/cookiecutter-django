@@ -90,6 +90,8 @@ SUPPORTED_COMBINATIONS = [
     {"rest_framework": "None"},
     {"rest_framework": "DRF"},
     {"rest_framework": "DNRF"},
+    {"use_celery": "y"},
+    {"use_celery": "n"},
 ]
 
 UNSUPPORTED_COMBINATIONS = [

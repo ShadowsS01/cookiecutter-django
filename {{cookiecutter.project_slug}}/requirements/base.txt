@@ -1,16 +1,24 @@
 python-slugify==8.0.1
 Pillow==10.0.0
 python-decouple==3.8
+argon2-cffi==21.3.0
 {%- if cookiecutter.use_whitenoise == 'y' %}
 whitenoise==6.5.0
 {%- endif %}
-argon2-cffi==21.3.0
+redis==4.6.0
+hiredis==2.2.3
+{%- if cookiecutter.use_celery == "y" %}
+celery==5.3.1
+django-celery-beat==2.5.0
+flower==2.0.0
+{%- endif %}
 
 # Django
 # ------------------------------------------------------------------------------
 django==4.2.4
 django-cleanup==8.0.0
 dj-database-url==2.0.0
+django-redis==5.3.0
 {%- if cookiecutter.rest_framework == 'DRF' %}
 # Django REST Framework
 djangorestframework==3.14.0

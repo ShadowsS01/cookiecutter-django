@@ -52,6 +52,8 @@ This page describes all the template options that will be prompted by the [cooki
 
 - **use_mailhog**: Indicates whether the project should be configured to use [MailHog](https://github.com/mailhog/MailHog).
 
+- **use_celery**: Indicates whether the project should be configured to use [Celery](https://github.com/celery/celery).
+
 - **use_sentry**: Indicates whether the project should be configured to use [Sentry](https://github.com/getsentry/sentry).
 
 - **use_whitenoise**: Indicates whether the project should be configured to use [WhiteNoise](https://github.com/evansd/whitenoise).

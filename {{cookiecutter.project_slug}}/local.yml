@@ -5,7 +5,7 @@ volumes:
   {{ cookiecutter.project_slug }}_local_postgres_data_backups: {}
 
 services:
-  django:
+  django:{% if cookiecutter.use_celery == 'y' %} &django{% endif %}
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -20,6 +20,9 @@ services:
       - .:/app:z
     depends_on:
       - postgres
+      {%- if cookiecutter.use_celery == 'y' %}
+      - redis
+      {%- endif %}
       {%- if cookiecutter.use_mailhog == 'y' %}
       - mailhog
       {%- endif %}
@@ -43,6 +46,47 @@ services:
     container_name: {{ cookiecutter.project_slug }}_local_mailhog
     ports:
       - "8025:8025"
+
+  {%- endif %}
+  {%- if cookiecutter.use_celery == 'y' %}
+
+  redis:
+    image: redis:6
+    container_name: {{ cookiecutter.project_slug }}_local_redis
+
+  celeryworker:
+    <<: *django
+    image: {{ cookiecutter.project_slug }}_local_celeryworker
+    container_name: {{ cookiecutter.project_slug }}_local_celeryworker
+    depends_on:
+      - redis
+      - postgres
+      {%- if cookiecutter.use_mailhog == 'y' %}
+      - mailhog
+      {%- endif %}
+    ports: []
+    command: /start-celeryworker
+
+  celerybeat:
+    <<: *django
+    image: {{ cookiecutter.project_slug }}_local_celerybeat
+    container_name: {{ cookiecutter.project_slug }}_local_celerybeat
+    depends_on:
+      - redis
+      - postgres
+      {%- if cookiecutter.use_mailhog == 'y' %}
+      - mailhog
+      {%- endif %}
+    ports: []
+    command: /start-celerybeat
+
+  flower:
+    <<: *django
+    image: {{ cookiecutter.project_slug }}_local_flower
+    container_name: {{ cookiecutter.project_slug }}_local_flower
+    ports:
+      - '5555:5555'
+    command: /start-flower
 
   {%- endif %}
   {%- if cookiecutter.use_pgadmin == "y" %}

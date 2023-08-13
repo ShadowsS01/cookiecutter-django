@@ -20,6 +20,14 @@ HINT = "\x1b[3;33m"
 SUCCESS = "\x1b[1;32m [SUCCESS]: "
 
 
+def remove_celery_files():
+    file_names = [
+        os.path.join("config", "celery_app.py"),
+    ]
+    for file_name in file_names:
+        os.remove(file_name)
+
+
 def generate_random_string(length, using_digits=False, using_ascii_letters=False, using_punctuation=False):
     """
     Example:
@@ -103,13 +111,29 @@ def set_postgres_password(file_path, value=None):
     )
 
 
+def set_celery_flower_user(file_path, value=None):
+    return set_flag(file_path, "!!!SET CELERY_FLOWER_USER!!!", value=value)
+
+
+def set_celery_flower_password(file_path, value=None):
+    return set_flag(
+        file_path,
+        "!!!SET CELERY_FLOWER_PASSWORD!!!",
+        value=value,
+        length=64,
+        using_digits=True,
+        using_ascii_letters=True,
+    )
+
+
 def append_to_gitignore_file(ignored_line):
     with open(".gitignore", "a") as gitignore_file:
         gitignore_file.write(ignored_line)
         gitignore_file.write("\n")
 
 
-def set_flags_in_envs(postgres_user):
+def set_flags_in_envs(postgres_user, celery_flower_user):
+    local_django_envs_path = os.path.join(".envs", ".local", ".django")
     production_django_envs_path = os.path.join(".envs", ".production", ".django")
     local_postgres_envs_path = os.path.join(".envs", ".local", ".postgres")
     production_postgres_envs_path = os.path.join(".envs", ".production", ".postgres")
@@ -122,10 +146,20 @@ def set_flags_in_envs(postgres_user):
     set_postgres_user(production_postgres_envs_path, value=postgres_user)
     set_postgres_password(production_postgres_envs_path)
 
+    set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
+    set_celery_flower_password(local_django_envs_path)
+    set_celery_flower_user(production_django_envs_path, value=celery_flower_user)
+    set_celery_flower_password(production_django_envs_path)
+
 
 def set_flags_in_settings_files():
     set_django_secret_key(os.path.join("config", "settings", "local.py"))
     set_django_secret_key(os.path.join("config", "settings", "test.py"))
+
+
+def remove_celery_compose_dirs():
+    shutil.rmtree(os.path.join("compose", "local", "django", "celery"))
+    shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
 
 
 def remove_aws_dockerfile():
@@ -142,7 +176,7 @@ def remove_storages_module():
 
 
 def main():
-    set_flags_in_envs(generate_random_user())
+    set_flags_in_envs(generate_random_user(), generate_random_user())
     set_flags_in_settings_files()
 
     append_to_gitignore_file(".env")
@@ -157,6 +191,10 @@ def main():
             "media files won't be served in production." + TERMINATOR
         )
         remove_storages_module()
+
+    if "{{ cookiecutter.use_celery }}".lower() == "n":
+        remove_celery_files()
+        remove_celery_compose_dirs()
 
     if "{{ cookiecutter.rest_framework }}" == "None":
         remove_api_starter_files()

@@ -3,9 +3,13 @@ import logging
 
 import sentry_sdk
 
+{%- if cookiecutter.use_celery == 'y' %}
+from sentry_sdk.integrations.celery import CeleryIntegration
+
+{%- endif %}
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
-# from sentry_sdk.integrations.redis import RedisIntegration
+from sentry_sdk.integrations.redis import RedisIntegration
 
 {% endif -%}
 from .base import *  # noqa
@@ -25,6 +29,21 @@ ALLOWED_HOSTS = config(
 # DATABASES
 # ------------------------------------------------------------------------------
 DATABASES["default"]["CONN_MAX_AGE"] = config("CONN_MAX_AGE", default=60)  # noqa: F405
+
+# CACHES
+# ------------------------------------------------------------------------------
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": config("REDIS_URL"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # Mimicing memcache behavior.
+            # https://github.com/jazzband/django-redis#memcached-exceptions-behavior
+            "IGNORE_EXCEPTIONS": True,
+        },
+    }
+}
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -293,8 +312,16 @@ sentry_logging = LoggingIntegration(
     event_level=logging.ERROR,  # Send errors as events
 )
 
-integrations = [sentry_logging, DjangoIntegration()]
-# integrations = [sentry_logging, DjangoIntegration(), RedisIntegration()]
+{%- if cookiecutter.use_celery == 'y' %}
+integrations = [
+    sentry_logging,
+    DjangoIntegration(),
+    CeleryIntegration(),
+    RedisIntegration(),
+]
+{% else %}
+integrations = [sentry_logging, DjangoIntegration(), RedisIntegration()]
+{% endif -%}
 
 sentry_sdk.init(
     dsn=SENTRY_DSN,

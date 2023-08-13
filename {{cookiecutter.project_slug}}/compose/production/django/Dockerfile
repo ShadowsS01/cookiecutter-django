@@ -62,6 +62,20 @@ COPY --chown=django:django ./compose/production/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
+{%- if cookiecutter.use_celery == "y" %}
+COPY --chown=django:django ./compose/production/django/celery/worker/start /start-celeryworker
+RUN sed -i 's/\r$//g' /start-celeryworker
+RUN chmod +x /start-celeryworker
+
+COPY --chown=django:django ./compose/production/django/celery/beat/start /start-celerybeat
+RUN sed -i 's/\r$//g' /start-celerybeat
+RUN chmod +x /start-celerybeat
+
+COPY ./compose/production/django/celery/flower/start /start-flower
+RUN sed -i 's/\r$//g' /start-flower
+RUN chmod +x /start-flower
+{%- endif %}
+
 # copy application code to WORKDIR
 COPY --chown=django:django . ${APP_HOME}
 RUN chown django:django ${APP_HOME}
@@ -69,6 +83,9 @@ RUN chown django:django ${APP_HOME}
 USER django
 
 RUN DATABASE_URL="" \
+  {%- if cookiecutter.use_celery == "y" %}
+  CELERY_BROKER_URL="" \
+  {%- endif %}
   DJANGO_SETTINGS_MODULE="config.settings.test"
 
 ENTRYPOINT ["/entrypoint"]

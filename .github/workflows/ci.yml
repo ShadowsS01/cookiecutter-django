@@ -39,10 +39,10 @@ jobs:
         script:
           - name: Basic
             args: ""
-          - name: DRF
-            args: "rest_framework=DRF"
-          - name: DNRF
-            args: "rest_framework=DNRF"
+          - name: Celery & DRF
+            args: "use_celery=y rest_framework=DRF"
+          - name: Celery & DNRF
+            args: "use_celery=y rest_framework=DNRF"
 
     name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
