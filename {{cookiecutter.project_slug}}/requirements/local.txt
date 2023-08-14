@@ -9,11 +9,11 @@ watchfiles==0.19.0
 # Testing
 # ------------------------------------------------------------------------------
 mypy==1.4.1
-django-stubs==4.2.3
+django-stubs[compatible-mypy]==4.2.3
 pytest==7.4.0
 pytest-sugar==0.9.7
 {%- if cookiecutter.rest_framework == 'DRF' %}
-djangorestframework-stubs==3.14.2
+djangorestframework-stubs[compatible-mypy]==3.14.2
 {%- endif %}
 
 # Code quality
