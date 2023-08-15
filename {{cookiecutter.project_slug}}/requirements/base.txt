@@ -5,7 +5,7 @@ argon2-cffi==21.3.0
 {%- if cookiecutter.use_whitenoise == 'y' %}
 whitenoise==6.5.0
 {%- endif %}
-redis==4.6.0
+redis==5.0.0
 hiredis==2.2.3
 {%- if cookiecutter.use_celery == "y" %}
 celery==5.3.1
