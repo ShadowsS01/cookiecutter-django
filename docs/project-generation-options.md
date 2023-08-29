@@ -36,7 +36,7 @@ This page describes all the template options that will be prompted by the [cooki
   - None
   - [DRF (Django REST framework)](https://www.django-rest-framework.org/)
   - [DNRF (Django Ninja REST framework)](https://django-ninja.rest-framework.com/)
-  
+
 - **mail_service**: Select an email service that Django-Anymail provides:
 
   - [Mailgun](https://www.mailgun.com/)
