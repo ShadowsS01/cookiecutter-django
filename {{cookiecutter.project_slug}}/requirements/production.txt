@@ -6,7 +6,7 @@ psycopg[c]==3.1.9
 Collectfast==2.2.0
 {%- endif %}
 {%- if cookiecutter.use_sentry == "y" %}
-sentry-sdk==1.29.2
+sentry-sdk==1.30.0
 {%- endif %}
 
 # Django
