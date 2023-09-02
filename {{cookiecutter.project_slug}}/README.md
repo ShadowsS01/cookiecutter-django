@@ -1,14 +1,14 @@
 # {{cookiecutter.project_name}}
 
 [![license mit](https://img.shields.io/badge/licence-MIT-56BEB8)](LICENSE)
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/ShadowsS01/cookiecutter-django)
+[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/dkshs/cookiecutter-django)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 {{ cookiecutter.description }}
 
 ## Settings
 
-Moved to [settings](https://github.com/ShadowsS01/cookiecutter-django/blob/master/docs/settings.md).
+Moved to [settings](https://github.com/dkshs/cookiecutter-django/blob/master/docs/settings.md).
 
 ## Basic Commands
 
@@ -81,7 +81,7 @@ celery -A config.celery_app worker -B -l info
 In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [MailHog](https://github.com/mailhog/MailHog) with a web interface is available as docker container.
 
 Container mailhog will start automatically when you will run all docker containers.
-Please check [cookiecutter-django Docker documentation](https://github.com/ShadowsS01/cookiecutter-django/blob/master/docs/deployment-with-docker.md) for more details how to start all containers.
+Please check [cookiecutter-django Docker documentation](https://github.com/dkshs/cookiecutter-django/blob/master/docs/deployment-with-docker.md) for more details how to start all containers.
 
 With MailHog running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
 
@@ -102,4 +102,4 @@ The following details how to deploy this application.
 
 ### Docker
 
-See detailed [Docker documentation](https://github.com/ShadowsS01/cookiecutter-django/blob/master/docs/deployment-with-docker.md).
+See detailed [Docker documentation](https://github.com/dkshs/cookiecutter-django/blob/master/docs/deployment-with-docker.md).

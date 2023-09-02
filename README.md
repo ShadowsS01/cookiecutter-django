@@ -16,12 +16,12 @@ pip install cookiecutter
 Now run it against this repo:
 
 ```bash
-cookiecutter https://github.com/ShadowsS01/cookiecutter-django
+cookiecutter https://github.com/dkshs/cookiecutter-django
 ```
 
 You'll be prompted for some values. Provide them, then a Django project will be created for you.
 
-**Warning**: After this point, change 'My name', etc to your own information.
+**Warning**: After this point, change 'DKSHS', etc to your own information.
 
 Answer the prompts with your own desired [options](./docs/project-generation-options.md). For example:
 
