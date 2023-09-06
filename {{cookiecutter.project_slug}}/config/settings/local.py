@@ -22,9 +22,9 @@ CACHES = {
 {% if cookiecutter.mail_service != 'None' %}
 # EMAIL
 # ------------------------------------------------------------------------------
-{% if cookiecutter.use_mailhog == 'y' -%}
+{% if cookiecutter.use_mailpit == 'y' -%}
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
-EMAIL_HOST = config("EMAIL_HOST", default="mailhog")
+EMAIL_HOST = config("EMAIL_HOST", default="mailpit")
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 EMAIL_PORT = 1025
 {%- else -%}

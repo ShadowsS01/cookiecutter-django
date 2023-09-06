@@ -265,6 +265,9 @@ tags
 dump.rdb
 
 ### Project template
+{%- if cookiecutter.use_mailpit == 'y' %}
+mailpit
+{%- endif %}
 {{ cookiecutter.project_slug }}/media/
 
 .pytest_cache/

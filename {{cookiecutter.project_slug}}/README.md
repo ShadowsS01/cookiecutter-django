@@ -74,16 +74,16 @@ celery -A config.celery_app worker -B -l info
 ```
 
 {%- endif %}
-{%- if cookiecutter.use_mailhog == "y" %}
+{%- if cookiecutter.use_mailpit == "y" %}
 
 ### Email Server
 
-In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [MailHog](https://github.com/mailhog/MailHog) with a web interface is available as docker container.
+In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [Mailpit](https://github.com/axllent/mailpit/) with a web interface is available as docker container.
 
-Container mailhog will start automatically when you will run all docker containers.
+Container mailpit will start automatically when you will run all docker containers.
 Please check [cookiecutter-django Docker documentation](https://github.com/dkshs/cookiecutter-django/blob/master/docs/deployment-with-docker.md) for more details how to start all containers.
 
-With MailHog running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
+With Mailpit running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
 
 {%- endif %}
 {%- if cookiecutter.use_sentry == "y" %}

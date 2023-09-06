@@ -50,7 +50,7 @@ This page describes all the template options that will be prompted by the [cooki
   - [Other SMTP](https://anymail.readthedocs.io/en/stable/)
   - None
 
-- **use_mailhog**: Indicates whether the project should be configured to use [MailHog](https://github.com/mailhog/MailHog).
+- **use_mailpit**: Indicates whether the project should be configured to use [Mailpit](https://github.com/axllent/mailpit/).
 
 - **use_celery**: Indicates whether the project should be configured to use [Celery](https://github.com/celery/celery).
 

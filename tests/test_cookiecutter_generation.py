@@ -83,8 +83,8 @@ SUPPORTED_COMBINATIONS = [
     # with mail_service Amazon SES is not supported
     {"use_whitenoise": "y"},
     {"use_whitenoise": "n"},
-    {"use_mailhog": "y"},
-    {"use_mailhog": "n"},
+    {"use_mailpit": "y"},
+    {"use_mailpit": "n"},
     {"use_sentry": "y"},
     {"use_sentry": "n"},
     {"rest_framework": "None"},

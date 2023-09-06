@@ -20,7 +20,7 @@
     "Other SMTP",
     "None"
   ],
-  "use_mailhog": "n",
+  "use_mailpit": "n",
   "use_celery": "n",
   "use_sentry": "n",
   "use_whitenoise": "n",
