@@ -10,6 +10,9 @@ updates:
       interval: "daily"
     labels:
       - "update"
+    commit-message:
+      include: scope
+      prefix: update
 
   # Enable version updates for Docker
   # We need to specify each Dockerfile in a separate entry because Dependabot doesn't
@@ -26,6 +29,9 @@ updates:
           - "version-update:semver-minor"
     labels:
       - "update"
+    commit-message:
+      include: scope
+      prefix: update
 
   - package-ecosystem: "docker"
     directory: "{{cookiecutter.project_slug}}/compose/production/aws/"
@@ -33,6 +39,9 @@ updates:
       interval: "daily"
     labels:
       - "update"
+    commit-message:
+      include: scope
+      prefix: update
 
   - package-ecosystem: "docker"
     directory: "{{cookiecutter.project_slug}}/compose/production/django/"
@@ -45,6 +54,9 @@ updates:
           - "version-update:semver-minor"
     labels:
       - "update"
+    commit-message:
+      include: scope
+      prefix: update
 
   - package-ecosystem: "docker"
     directory: "{{cookiecutter.project_slug}}/compose/production/postgres/"
@@ -52,3 +64,6 @@ updates:
       interval: "daily"
     labels:
       - "update"
+    commit-message:
+      include: scope
+      prefix: update
