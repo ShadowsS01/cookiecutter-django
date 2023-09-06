@@ -37,6 +37,6 @@ if "{{ cookiecutter.mail_service }}" == "Amazon SES" and "{{ cookiecutter.cloud_
     print(f"{ERROR}You should either use AWS or select a different " f"Mail Service for sending emails.{TERMINATOR}")
     sys.exit(1)
 
-if "{{ cookiecutter.mail_service }}" == "None" and "{{ cookiecutter.use_mailhog }}".lower() == "y":
-    print(f"{ERROR}You should not use mailhog without an email service.{TERMINATOR}")
+if "{{ cookiecutter.mail_service }}" == "None" and "{{ cookiecutter.use_mailpit }}".lower() == "y":
+    print(f"{ERROR}You should not use mailpit without an email service.{TERMINATOR}")
     sys.exit(1)
