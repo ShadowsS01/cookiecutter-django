@@ -12,9 +12,9 @@ sentry-sdk==1.30.0
 # Django
 # ------------------------------------------------------------------------------
 {%- if cookiecutter.cloud_provider == 'AWS' %}
-django-storages[boto3]==1.13.2
+django-storages[s3]==1.14
 {%- elif cookiecutter.cloud_provider == 'GCP' %}
-django-storages[google]==1.13.2
+django-storages[google]==1.14
 {%- endif %}
 {%- if cookiecutter.mail_service == 'Mailgun' %}
 django-anymail[mailgun]==10.1
