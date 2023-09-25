@@ -1,7 +1,7 @@
 -r base.txt
 
 Werkzeug==2.3.7
-psycopg[binary]==3.1.9
+psycopg[binary]==3.1.11
 {%- if cookiecutter.use_celery == 'y' %}
 watchfiles==0.20.0
 {%- endif %}
