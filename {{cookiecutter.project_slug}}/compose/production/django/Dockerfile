@@ -71,7 +71,7 @@ COPY --chown=django:django ./compose/production/django/celery/beat/start /start-
 RUN sed -i 's/\r$//g' /start-celerybeat
 RUN chmod +x /start-celerybeat
 
-COPY ./compose/production/django/celery/flower/start /start-flower
+COPY --chown=django:django ./compose/production/django/celery/flower/start /start-flower
 RUN sed -i 's/\r$//g' /start-flower
 RUN chmod +x /start-flower
 {%- endif %}
@@ -84,8 +84,8 @@ USER django
 
 RUN DATABASE_URL="" \
   {%- if cookiecutter.use_celery == "y" %}
-  CELERY_BROKER_URL="" \
+CELERY_BROKER_URL="" \
   {%- endif %}
-  DJANGO_SETTINGS_MODULE="config.settings.test"
+DJANGO_SETTINGS_MODULE="config.settings.test"
 
 ENTRYPOINT ["/entrypoint"]
