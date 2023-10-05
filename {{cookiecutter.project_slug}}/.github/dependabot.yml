@@ -26,14 +26,14 @@ updates:
         update-types:
           - "version-update:semver-major"
           - "version-update:semver-minor"
-
+  {% if cookiecutter.cloud_provider == 'AWS' %}
   - package-ecosystem: "docker"
     # Look for a `Dockerfile` in the `compose/production/aws` directory
     directory: "compose/production/aws/"
     # Every weekday
     schedule:
       interval: "daily"
-
+  {% endif %}
   - package-ecosystem: "docker"
     # Look for a `Dockerfile` in the `compose/production/django` directory
     directory: "compose/production/django/"
