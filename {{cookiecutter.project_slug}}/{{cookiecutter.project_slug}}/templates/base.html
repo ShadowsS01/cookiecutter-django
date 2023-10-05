@@ -18,12 +18,8 @@
       name="author"
       content="{% endraw %}{{ cookiecutter.author_name }}{% raw %}"
     />
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
-    {%- endraw %}
-      {%- if cookiecutter.use_tailwindcss == 'y' %}
-    {% raw %}<link href="{% static 'css/styles.css' %}" rel="stylesheet" />{% endraw %}
-      {%- endif %}
-    {%- raw %}
+    <link href="{% static 'images/favicons/favicon.ico' %}" rel="icon" />
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     {% block css %}
       {% comment %}
         <!-- Your stuff: Third-party CSS libraries go here -->
