@@ -20,6 +20,26 @@ HINT = "\x1b[3;33m"
 SUCCESS = "\x1b[1;32m [SUCCESS]: "
 
 
+def remove_tailwind_files():
+    file_names = [
+        "tailwind.config.js",
+        os.path.join("{{ cookiecutter.project_slug }}", "tailwind.css"),
+    ]
+    for file_name in file_names:
+        os.remove(file_name)
+
+
+def remove_packagejson_file():
+    file_names = ["package.json"]
+    for file_name in file_names:
+        os.remove(file_name)
+
+
+def handle_use_tailwind():
+    remove_tailwind_files()
+    remove_packagejson_file()
+
+
 def remove_celery_files():
     file_names = [
         os.path.join("config", "celery_app.py"),
@@ -166,6 +186,10 @@ def remove_aws_dockerfile():
     shutil.rmtree(os.path.join("compose", "production", "aws"))
 
 
+def remove_node_dockerfile():
+    shutil.rmtree(os.path.join("compose", "local", "node"))
+
+
 def remove_api_starter_files():
     os.remove(os.path.join("config", "api.py"))
     os.remove(os.path.join("tests", "test_swagger.py"))
@@ -184,6 +208,10 @@ def main():
 
     if "{{ cookiecutter.cloud_provider}}" != "AWS":
         remove_aws_dockerfile()
+
+    if "{{ cookiecutter.use_tailwindcss }}".lower() == "n":
+        handle_use_tailwind()
+        remove_node_dockerfile()
 
     if "{{ cookiecutter.cloud_provider }}" == "None":
         print(

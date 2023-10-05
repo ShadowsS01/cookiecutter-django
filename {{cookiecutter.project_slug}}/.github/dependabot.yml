@@ -26,14 +26,27 @@ updates:
         update-types:
           - "version-update:semver-major"
           - "version-update:semver-minor"
-  {% if cookiecutter.cloud_provider == 'AWS' %}
+
+{%- if cookiecutter.cloud_provider == 'AWS' %}
+
   - package-ecosystem: "docker"
     # Look for a `Dockerfile` in the `compose/production/aws` directory
     directory: "compose/production/aws/"
     # Every weekday
     schedule:
       interval: "daily"
-  {% endif %}
+
+{%- endif %}
+
+{%- if cookiecutter.use_tailwindcss == 'y' %}
+  - package-ecosystem: "docker"
+    # Look for a `Dockerfile` in the `compose/local/node` directory
+    directory: "compose/local/node/"
+    # Every weekday
+    schedule:
+      interval: "daily"
+{%- endif %}
+
   - package-ecosystem: "docker"
     # Look for a `Dockerfile` in the `compose/production/django` directory
     directory: "compose/production/django/"
@@ -53,6 +66,18 @@ updates:
     # Every weekday
     schedule:
       interval: "daily"
+
+{%- if cookiecutter.use_tailwindcss == 'y' %}
+
+  # Enable version updates for javascript/npm
+  - package-ecosystem: "npm"
+    # Look for a `packages.json` in the `root` directory
+    directory: "/"
+    # Every weekday
+    schedule:
+      interval: "daily"
+
+{%- endif %}
 
   # Enable version updates for Python/Pip - Production
   - package-ecosystem: "pip"

@@ -24,5 +24,6 @@
   "use_celery": "n",
   "use_sentry": "n",
   "use_whitenoise": "n",
-  "use_pgadmin": "n"
+  "use_pgadmin": "n",
+  "use_tailwindcss": "n"
 }

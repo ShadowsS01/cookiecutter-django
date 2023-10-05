@@ -43,6 +43,8 @@ jobs:
             args: "use_celery=y rest_framework=DRF"
           - name: Celery & DNRF
             args: "use_celery=y rest_framework=DNRF"
+          - name: TailwindCSS
+            args: "use_tailwindcss=y"
 
     name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest

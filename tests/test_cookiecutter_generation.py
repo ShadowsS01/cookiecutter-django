@@ -92,6 +92,8 @@ SUPPORTED_COMBINATIONS = [
     {"rest_framework": "DNRF"},
     {"use_celery": "y"},
     {"use_celery": "n"},
+    {"use_tailwindcss": "y"},
+    {"use_tailwindcss": "n"},
 ]
 
 UNSUPPORTED_COMBINATIONS = [

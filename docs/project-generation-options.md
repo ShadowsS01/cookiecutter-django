@@ -59,3 +59,5 @@ This page describes all the template options that will be prompted by the [cooki
 - **use_whitenoise**: Indicates whether the project should be configured to use [WhiteNoise](https://github.com/evansd/whitenoise).
 
 - **use_pgadmin**: Indicates whether the project should be configured to use [pgAdmin](https://www.pgadmin.org/).
+
+- **use_tailwindcss**: Indicates whether the project should be configured to use [TailwindCSS](https://tailwindcss.com/).
