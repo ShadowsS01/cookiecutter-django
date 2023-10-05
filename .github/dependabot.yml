@@ -67,3 +67,13 @@ updates:
     commit-message:
       include: scope
       prefix: update
+
+  - package-ecosystem: "docker"
+    directory: "{{cookiecutter.project_slug}}/compose/production/traefik/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "update"
+    commit-message:
+      include: scope
+      prefix: update
