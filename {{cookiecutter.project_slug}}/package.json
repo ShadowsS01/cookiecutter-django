@@ -9,7 +9,7 @@
       "./{{cookiecutter.project_slug}}"
     ],
     "ext": "html,css",
-    "ignore": "./{{cookiecutter.project_slug}}/static/styles.css"
+    "ignore": "./{{cookiecutter.project_slug}}/static/css/styles.css"
   },
   "scripts": {
     "tailwind": "tailwindcss -i ./{{cookiecutter.project_slug}}/tailwind.css -o ./{{cookiecutter.project_slug}}/static/css/styles.css",
