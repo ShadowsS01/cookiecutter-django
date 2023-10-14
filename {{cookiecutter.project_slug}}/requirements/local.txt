@@ -27,7 +27,7 @@ pylint-django==2.5.3
 {%- if cookiecutter.use_celery == 'y' %}
 pylint-celery==0.3
 {%- endif %}
-pre-commit==3.4.0
+pre-commit==3.5.0
 
 # Django
 # ------------------------------------------------------------------------------
