@@ -13,7 +13,7 @@ django-stubs[compatible-mypy]==4.2.5
 pytest==7.4.2
 pytest-sugar==0.9.7
 {%- if cookiecutter.rest_framework == 'DRF' %}
-djangorestframework-stubs[compatible-mypy]==3.14.3
+djangorestframework-stubs[compatible-mypy]==3.14.4
 {%- endif %}
 
 # Code quality
