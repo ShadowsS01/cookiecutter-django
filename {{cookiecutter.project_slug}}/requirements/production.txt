@@ -17,21 +17,21 @@ django-storages[s3]==1.14.2
 django-storages[google]==1.14.2
 {%- endif %}
 {%- if cookiecutter.mail_service == 'Mailgun' %}
-django-anymail[mailgun]==10.1
+django-anymail[mailgun]==10.2
 {%- elif cookiecutter.mail_service == 'Amazon SES' %}
-django-anymail[amazon-ses]==10.1
+django-anymail[amazon-ses]==10.2
 {%- elif cookiecutter.mail_service == 'Mailjet' %}
-django-anymail[mailjet]==10.1
+django-anymail[mailjet]==10.2
 {%- elif cookiecutter.mail_service == 'Mandrill' %}
-django-anymail[mandrill]==10.1
+django-anymail[mandrill]==10.2
 {%- elif cookiecutter.mail_service == 'Postmark' %}
-django-anymail[postmark]==10.1
+django-anymail[postmark]==10.2
 {%- elif cookiecutter.mail_service == 'Sendgrid' %}
-django-anymail[sendgrid]==10.1
+django-anymail[sendgrid]==10.2
 {%- elif cookiecutter.mail_service == 'SendinBlue' %}
-django-anymail[sendinblue]==10.1
+django-anymail[sendinblue]==10.2
 {%- elif cookiecutter.mail_service == 'SparkPost' %}
-django-anymail[sparkpost]==10.1
+django-anymail[sparkpost]==10.2
 {%- elif cookiecutter.mail_service == 'Other SMTP' %}
-django-anymail==10.1
+django-anymail==10.2
 {%- endif %}
