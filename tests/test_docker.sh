@@ -31,3 +31,8 @@ docker compose -f local.yml run django python manage.py makemigrations --dry-run
 
 # Make sure the check doesn't raise any warnings
 docker compose -f local.yml run django python manage.py check --fail-level WARNING
+
+# Run npm tailwind:build script if package.json is present
+if [ -f "package.json" ]; then
+    docker compose -f local.yml run node npm run tailwind:build
+fi
