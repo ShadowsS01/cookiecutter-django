@@ -22,12 +22,12 @@ django-redis==5.4.0
 {%- if cookiecutter.rest_framework == 'DRF' %}
 # Django REST Framework
 djangorestframework==3.14.0
-django-cors-headers==4.3.0
+django-cors-headers==4.3.1
 # DRF-spectacular for api documentation
 drf-spectacular==0.26.5
 {%- elif cookiecutter.rest_framework == 'DNRF' %}
 # Django Ninja REST framework
 django-ninja==0.22.2
 orjson==3.9.10
-django-cors-headers==4.3.0
+django-cors-headers==4.3.1
 {%- endif %}
