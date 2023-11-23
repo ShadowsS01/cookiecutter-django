@@ -8,7 +8,7 @@ whitenoise==6.6.0
 redis==5.0.1
 hiredis==2.2.3
 {%- if cookiecutter.use_celery == "y" %}
-celery==5.3.5
+celery==5.3.6
 django-celery-beat==2.5.0
 flower==2.0.1
 {%- endif %}
