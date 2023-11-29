@@ -1,5 +1,5 @@
 {% if cookiecutter.use_tailwindcss == 'y' -%}
-FROM node:18-bullseye-slim as client-builder
+FROM node:20-bullseye-slim as client-builder
 
 ARG APP_HOME=/app
 WORKDIR ${APP_HOME}
