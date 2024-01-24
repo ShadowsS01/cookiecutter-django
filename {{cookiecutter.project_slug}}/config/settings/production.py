@@ -104,33 +104,45 @@ GS_DEFAULT_ACL = "publicRead"
 {% endif -%}
 
 {% if cookiecutter.cloud_provider != 'None' or cookiecutter.use_whitenoise == 'y' %}
-# STATIC
-# ------------------------
-{% endif -%}
-{% if cookiecutter.use_whitenoise == 'y' -%}
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-{% elif cookiecutter.cloud_provider == 'AWS' -%}
-STATICFILES_STORAGE = "{{cookiecutter.project_slug}}.utils.storages.StaticS3Storage"
+# STATIC & MEDIA
+# ------------------------------------------------------------------------------
+STORAGES = {
+{%- if cookiecutter.use_whitenoise == 'y' %}
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+{%- elif cookiecutter.cloud_provider == 'AWS' %}
+    "default": {
+        "BACKEND": "{{cookiecutter.project_slug}}.utils.storages.MediaS3Storage",
+    },
+    "staticfiles": {
+        "BACKEND": "{{cookiecutter.project_slug}}.utils.storages.StaticS3Storage",
+    },
+{%- elif cookiecutter.cloud_provider == 'GCP' %}
+    "default": {
+        "BACKEND": "{{cookiecutter.project_slug}}.utils.storages.MediaGoogleCloudStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "{{cookiecutter.project_slug}}.utils.storages.StaticGoogleCloudStorage",
+    },
+{%- endif %}
+}
+{% endif %}
+
+{%- if cookiecutter.cloud_provider == 'AWS' %}
+MEDIA_URL = f"https://{aws_s3_domain}/media/"
 COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 STATIC_URL = f"https://{aws_s3_domain}/static/"
-{% elif cookiecutter.cloud_provider == 'GCP' -%}
-STATICFILES_STORAGE = "{{cookiecutter.project_slug}}.utils.storages.StaticGoogleCloudStorage"
+{% elif cookiecutter.cloud_provider == 'GCP' %}
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
 STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
-{% endif -%}
+{% endif %}
 
-{% if cookiecutter.cloud_provider != 'None' %}
-# MEDIA
-# ------------------------------------------------------------------------------
-{%- endif %}
-{%- if cookiecutter.cloud_provider == 'AWS' %}
-DEFAULT_FILE_STORAGE = "{{cookiecutter.project_slug}}.utils.storages.MediaS3Storage"
-MEDIA_URL = f"https://{aws_s3_domain}/media/"
-{%- elif cookiecutter.cloud_provider == 'GCP' %}
-DEFAULT_FILE_STORAGE = "{{cookiecutter.project_slug}}.utils.storages.MediaGoogleCloudStorage"
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
-{%- endif %}
-{% if cookiecutter.mail_service != 'None' %}
+{%- if cookiecutter.mail_service != 'None' %}
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
@@ -150,7 +162,6 @@ EMAIL_SUBJECT_PREFIX = config(
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
 ADMIN_URL = config("DJANGO_ADMIN_URL")
-
 {% if cookiecutter.mail_service != 'None' %}
 # Anymail
 # ------------------------------------------------------------------------------
@@ -218,7 +229,6 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ANYMAIL = {}
 {%- endif %}
 {% endif %}
-
 {%- if cookiecutter.use_whitenoise == 'n' %}
 # Collectfast
 # ------------------------------------------------------------------------------
