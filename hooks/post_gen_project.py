@@ -195,10 +195,6 @@ def remove_api_starter_files():
     os.remove(os.path.join("tests", "test_swagger.py"))
 
 
-def remove_storages_module():
-    os.remove(os.path.join("{{cookiecutter.project_slug}}", "utils", "storages.py"))
-
-
 def main():
     set_flags_in_envs(generate_random_user(), generate_random_user())
     set_flags_in_settings_files()
@@ -218,7 +214,6 @@ def main():
             WARNING + "You chose to not use any cloud providers nor Docker, "
             "media files won't be served in production." + TERMINATOR
         )
-        remove_storages_module()
 
     if "{{ cookiecutter.use_celery }}".lower() == "n":
         remove_celery_files()
