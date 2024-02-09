@@ -23,7 +23,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = config(
     "DJANGO_ALLOWED_HOSTS",
     cast=lambda v: [s.strip() for s in v.split(",")],
-    default=["{{ cookiecutter.domain_name }}"],
+    default="{{ cookiecutter.domain_name }}",
 )
 
 # DATABASES
