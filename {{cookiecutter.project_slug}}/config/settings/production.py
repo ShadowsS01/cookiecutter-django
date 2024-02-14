@@ -1,3 +1,4 @@
+# ruff: noqa: E501
 {% if cookiecutter.use_sentry == 'y' -%}
 import logging
 
@@ -12,7 +13,12 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
 
 {% endif -%}
-from .base import *  # noqa
+from .base import *  # noqa: F403
+from .base import DATABASES
+from .base import INSTALLED_APPS
+{%- if cookiecutter.rest_framework == "DRF" %}
+from .base import SPECTACULAR_SETTINGS
+{%- endif %}
 from .base import config
 
 # GENERAL
@@ -28,7 +34,7 @@ ALLOWED_HOSTS = config(
 
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES["default"]["CONN_MAX_AGE"] = config("CONN_MAX_AGE", default=60)  # noqa: F405
+DATABASES["default"]["CONN_MAX_AGE"] = config("CONN_MAX_AGE", default=60)
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -42,7 +48,7 @@ CACHES = {
             # https://github.com/jazzband/django-redis#memcached-exceptions-behavior
             "IGNORE_EXCEPTIONS": True,
         },
-    }
+    },
 }
 
 # SECURITY
@@ -60,17 +66,21 @@ CSRF_COOKIE_SECURE = True
 # TODO: set this to 60 seconds first and then to 518400 once you prove the former works
 SECURE_HSTS_SECONDS = 60
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-include-subdomains
-SECURE_HSTS_INCLUDE_SUBDOMAINS = config("DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS", cast=bool, default=True)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = config(
+    "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS", cast=bool, default=True,
+)
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-preload
 SECURE_HSTS_PRELOAD = config("DJANGO_SECURE_HSTS_PRELOAD", cast=bool, default=True)
 # https://docs.djangoproject.com/en/dev/ref/middleware/#x-content-type-options-nosniff
-SECURE_CONTENT_TYPE_NOSNIFF = config("DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", cast=bool, default=True)
+SECURE_CONTENT_TYPE_NOSNIFF = config(
+    "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", cast=bool, default=True,
+)
 
 {% if cookiecutter.cloud_provider != 'None' -%}
 # STORAGES
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/#installation
-INSTALLED_APPS += ["storages"]  # noqa: F405
+INSTALLED_APPS += ["storages"]
 {%- endif -%}
 {% if cookiecutter.cloud_provider == 'AWS' %}
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
@@ -182,7 +192,7 @@ ADMIN_URL = config("DJANGO_ADMIN_URL")
 # Anymail
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
-INSTALLED_APPS += ["anymail"]  # noqa: F405
+INSTALLED_APPS += ["anymail"]
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
 {%- if cookiecutter.mail_service == 'Mailgun' %}
@@ -249,7 +259,10 @@ ANYMAIL = {}
 # Collectfast
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
-INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa: F405
+INSTALLED_APPS = ["collectfast", *INSTALLED_APPS]
+{% endif %}
+{%- if cookiecutter.cloud_provider == "None" and cookiecutter.use_whitenoise == "y" and cookiecutter.mail_service == "None" %}
+INSTALLED_APPS = [*INSTALLED_APPS]
 {% endif %}
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -309,7 +322,7 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
             "formatter": "verbose",
-        }
+        },
     },
     "root": {"level": "INFO", "handlers": ["console"]},
     "loggers": {
@@ -361,7 +374,7 @@ sentry_sdk.init(
 # django-rest-framework
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
-SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa: F405
+SPECTACULAR_SETTINGS["SERVERS"] = [
     {"url": "https://{{ cookiecutter.domain_name }}", "description": "Production server"},
 ]
 {%- endif %}
