@@ -25,5 +25,6 @@
   "use_sentry": "n",
   "use_whitenoise": "n",
   "use_pgadmin": "n",
-  "use_tailwindcss": "n"
+  "use_tailwindcss": "n",
+  "automated_deps_updater": ["None", "Renovate", "Dependabot"]
 }

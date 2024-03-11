@@ -94,6 +94,9 @@ SUPPORTED_COMBINATIONS = [
     {"use_celery": "n"},
     {"use_tailwindcss": "y"},
     {"use_tailwindcss": "n"},
+    {"automated_deps_updater": "None"},
+    {"automated_deps_updater": "Renovate"},
+    {"automated_deps_updater": "Dependabot"},
 ]
 
 UNSUPPORTED_COMBINATIONS = [

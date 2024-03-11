@@ -48,6 +48,23 @@ def remove_celery_files():
         os.remove(file_name)
 
 
+def handle_automated_deps_updater(option="None"):
+    files_to_remove = []
+    if option == "None":
+        files_to_remove.extend(
+            (
+                os.path.join(".github", "renovate.json"),
+                os.path.join(".github", "dependabot.yml"),
+            )
+        )
+    elif option == "Renovate":
+        files_to_remove.append(os.path.join(".github", "dependabot.yml"))
+    elif option == "Dependabot":
+        files_to_remove.append(os.path.join(".github", "renovate.json"))
+    for file_name in files_to_remove:
+        os.remove(file_name)
+
+
 def generate_random_string(length, using_digits=False, using_ascii_letters=False, using_punctuation=False):
     """
     Example:
@@ -221,6 +238,8 @@ def main():
 
     if "{{ cookiecutter.rest_framework }}" == "None":
         remove_api_starter_files()
+
+    handle_automated_deps_updater("{{ cookiecutter.automated_deps_updater }}")
 
     print(f"{SUCCESS}Project initialized, keep up the good work!{TERMINATOR}")
 
