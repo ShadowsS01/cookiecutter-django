@@ -61,3 +61,9 @@ This page describes all the template options that will be prompted by the [cooki
 - **use_pgadmin**: Indicates whether the project should be configured to use [pgAdmin](https://www.pgadmin.org/).
 
 - **use_tailwindcss**: Indicates whether the project should be configured to use [TailwindCSS](https://tailwindcss.com/).
+
+- **automated_deps_updater**: select an automated dependency updater:
+
+  - None
+  - [Renovate](https://docs.renovatebot.com/)
+  - [Dependabot](https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file)
