@@ -1,8 +1,8 @@
 {
   "name": "{{cookiecutter.project_slug}}",
   "version": "1.0.0",
-  "author": "{{cookiecutter.author_name}}",
   "description": "{{cookiecutter.description}}",
+  "author": "{{cookiecutter.author_name}}",
   "license": "MIT",
   "nodemonConfig": {
     "watch": [

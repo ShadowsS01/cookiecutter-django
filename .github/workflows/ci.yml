@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ["master", "main"]
+    branches: [master, main]
   pull_request:
 
 concurrency:
@@ -40,11 +40,11 @@ jobs:
           - name: Basic
             args: ""
           - name: Celery & DRF
-            args: "use_celery=y rest_framework=DRF"
+            args: use_celery=y rest_framework=DRF
           - name: Celery & DNRF
-            args: "use_celery=y rest_framework=DNRF"
+            args: use_celery=y rest_framework=DNRF
           - name: TailwindCSS
-            args: "use_tailwindcss=y"
+            args: use_tailwindcss=y
 
     name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
