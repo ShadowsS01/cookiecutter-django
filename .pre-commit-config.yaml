@@ -23,7 +23,7 @@ repos:
     rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
-        args: [--tab-width, 2]
+        args: [--tab-width, "2"]
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.15.2
