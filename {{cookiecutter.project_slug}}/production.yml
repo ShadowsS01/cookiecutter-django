@@ -89,7 +89,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/nginx/Dockerfile
-    image: {{ cookiecutter.project_slug }}_local_nginx
+    image: {{ cookiecutter.project_slug }}_production_nginx
     depends_on:
       - django
     volumes:
