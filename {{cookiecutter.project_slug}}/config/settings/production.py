@@ -117,7 +117,7 @@ GS_DEFAULT_ACL = "publicRead"
 # STATIC & MEDIA
 # ------------------------------------------------------------------------------
 STORAGES = {
-{%- if cookiecutter.use_whitenoise == 'y' %}
+{%- if cookiecutter.cloud_provider == 'None' and cookiecutter.use_whitenoise == 'y' %}
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
@@ -132,6 +132,11 @@ STORAGES = {
             "file_overwrite": False,
         },
     },
+    {%- if cookiecutter.use_whitenoise == 'y' %}
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+    {%- else %}
     "staticfiles": {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
@@ -139,6 +144,7 @@ STORAGES = {
             "default_acl": "public-read",
         },
     },
+    {%- endif %}
 {%- elif cookiecutter.cloud_provider == 'GCP' %}
     "default": {
         "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
@@ -147,6 +153,11 @@ STORAGES = {
             "file_overwrite": False,
         },
     },
+    {%- if cookiecutter.use_whitenoise == 'y' %}
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+    {%- else %}
     "staticfiles": {
         "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
         "OPTIONS": {
@@ -154,18 +165,23 @@ STORAGES = {
             "default_acl": "publicRead",
         },
     },
+    {%- endif %}
 {%- endif %}
 }
 {% endif %}
 
 {%- if cookiecutter.cloud_provider == 'AWS' %}
 MEDIA_URL = f"https://{aws_s3_domain}/media/"
+{%- if cookiecutter.use_whitenoise == 'n' %}
 COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 STATIC_URL = f"https://{aws_s3_domain}/static/"
+{%- endif %}
 {% elif cookiecutter.cloud_provider == 'GCP' %}
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+{%- if cookiecutter.use_whitenoise == 'n' %}
 COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
 STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
+{%- endif %}
 {% endif %}
 
 {%- if cookiecutter.mail_service != 'None' %}
