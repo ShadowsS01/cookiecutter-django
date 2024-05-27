@@ -208,7 +208,13 @@ def test_djlint_lint_passes(cookies, context_override):
     # TODO: remove T002 when fixed https://github.com/Riverside-Healthcare/djLint/issues/687
     ignored_rules = "H006,H030,H031,T002"
     try:
-        sh.djlint("--lint", "--ignore", f"{autofixable_rules},{ignored_rules}", ".", _cwd=str(result.project_path))
+        sh.djlint(
+            "--lint",
+            "--ignore",
+            f"{autofixable_rules},{ignored_rules}",
+            ".",
+            _cwd=str(result.project_path),
+        )
     except sh.ErrorReturnCode as e:
         pytest.fail(e.stdout.decode())
 
