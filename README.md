@@ -1,5 +1,6 @@
 # Django Template
 
+[![Build Status](https://img.shields.io/github/actions/workflow/status/dkshs/cookiecutter-django/ci.yml?branch=master)](https://github.com/dkshs/cookiecutter-django/actions/workflows/ci.yml?query=branch%3Amaster)
 [![license mit](https://img.shields.io/badge/licence-MIT-56BEB8)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
