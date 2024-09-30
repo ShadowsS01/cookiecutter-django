@@ -40,6 +40,7 @@ def context():
 
 
 SUPPORTED_COMBINATIONS = [
+    {"postgresql_version": "17"},
     {"postgresql_version": "16"},
     {"postgresql_version": "15"},
     {"postgresql_version": "14"},
@@ -113,7 +114,11 @@ def _fixture_id(ctx):
 
 def build_files_list(base_dir):
     """Build a list containing absolute paths to the generated files."""
-    return [os.path.join(dirpath, file_path) for dirpath, subdirs, files in os.walk(base_dir) for file_path in files]
+    return [
+        os.path.join(dirpath, file_path)
+        for dirpath, subdirs, files in os.walk(base_dir)
+        for file_path in files
+    ]
 
 
 def check_paths(paths):
@@ -186,7 +191,9 @@ def test_django_upgrade_passes(cookies, context_override):
 
     python_files = [
         file_path.removeprefix(f"{result.project_path}/")
-        for file_path in glob.glob(str(result.project_path / "**" / "*.py"), recursive=True)
+        for file_path in glob.glob(
+            str(result.project_path / "**" / "*.py"), recursive=True
+        )
     ]
     try:
         sh.django_upgrade(
