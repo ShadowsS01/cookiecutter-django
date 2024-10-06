@@ -1,3 +1,25 @@
+[project]
+name = "cookiecutter-django"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "binaryornot==0.4.4",
+    "cookiecutter==2.6",
+    "django-upgrade==1.21",
+    "djlint==1.35.2",
+    "jinja2==3.1.4",
+    "pre-commit==4.0",
+    "pytest==8.3.3",
+    "pytest-cookies==0.7",
+    "pytest-instafail==0.5",
+    "pytest-xdist==3.6.1",
+    "pyyaml==6.0.2",
+    "ruff==0.6.9",
+    "sh==2.0.7; sys_platform!='win23'",
+    "tox==4.21.2",
+    "tox-uv>=1.11.2",
+]
+
 # ==== pytest ====
 [tool.pytest.ini_options]
 addopts = "-v --tb=short"
