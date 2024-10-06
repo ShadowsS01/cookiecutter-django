@@ -164,7 +164,7 @@ requires-dist = [
     { name = "ruff", specifier = "==0.6.9" },
     { name = "sh", marker = "sys_platform != 'win23'", specifier = "==2.0.7" },
     { name = "tox", specifier = "==4.21.2" },
-    { name = "tox-uv", specifier = ">=1.11.2" },
+    { name = "tox-uv", specifier = ">=1.13.0" },
 ]
 
 [[package]]
