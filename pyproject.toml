@@ -2,55 +2,54 @@
 name = "cookiecutter-django"
 version = "1.0.0"
 requires-python = ">=3.12"
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+]
 dependencies = [
-    "binaryornot==0.4.4",
-    "cookiecutter==2.6",
-    "django-upgrade==1.21",
-    "djlint==1.35.2",
-    "jinja2==3.1.4",
-    "pre-commit==4.0",
-    "pytest==8.3.3",
-    "pytest-cookies==0.7",
-    "pytest-instafail==0.5",
-    "pytest-xdist==3.6.1",
-    "pyyaml==6.0.2",
-    "ruff==0.6.9",
-    "sh==2.0.7; sys_platform!='win23'",
-    "tox==4.21.2",
-    "tox-uv>=1.13.0",
+  "binaryornot==0.4.4",
+  "cookiecutter==2.6",
+  "django-upgrade==1.21",
+  "djlint==1.35.2",
+  "jinja2==3.1.4",
+  "pre-commit==4",
+  "pytest==8.3.3",
+  "pytest-cookies==0.7",
+  "pytest-instafail==0.5",
+  "pytest-xdist==3.6.1",
+  "pyyaml==6.0.2",
+  "ruff==0.6.9",
+  "sh==2.0.7; sys_platform!='win23'",
+  "tox==4.21.2",
+  "tox-uv>=1.13",
 ]
 
-# ==== pytest ====
-[tool.pytest.ini_options]
-addopts = "-v --tb=short"
-norecursedirs = [
-    ".tox",
-    ".git",
-    "*/migrations/*",
-    "*/static/*",
-    "docs",
-    "venv",
-    ".venv",
-    "*/{{cookiecutter.project_slug}}/*",
-]
-
-# ==== black ====
 [tool.black]
 line-length = 119
 target-version = [ "py312" ]
 
-
-# ==== isort ====
 [tool.isort]
 profile = "black"
 line_length = 119
 known_first_party = [
-    "tests",
-    "hooks",
+  "tests",
+  "hooks",
 ]
 
+[tool.pytest.ini_options]
+addopts = "-v --tb=short"
+norecursedirs = [
+  ".tox",
+  ".git",
+  "*/migrations/*",
+  "*/static/*",
+  "docs",
+  "venv",
+  ".venv",
+  "*/{{cookiecutter.project_slug}}/*",
+]
 
-# ==== djLint ====
 [tool.djlint]
 blank_line_after_tag = "load,extends"
 close_void_tags = true
