@@ -22,7 +22,7 @@ dependencies = [
   "ruff==0.6.9",
   "sh==2.1.0; sys_platform!='win23'",
   "tox==4.21.2",
-  "tox-uv>=1.13",
+  "tox-uv>=1.15.0",
 ]
 
 [tool.black]
