@@ -14,7 +14,7 @@ dependencies = [
   "djlint==1.36.3",
   "jinja2==3.1.4",
   "pre-commit==4.0.1",
-  "pytest==8.3.3",
+  "pytest==8.3.4",
   "pytest-cookies==0.7",
   "pytest-instafail==0.5",
   "pytest-xdist==3.6.1",
