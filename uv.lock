@@ -91,7 +91,7 @@ name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de", size = 336121 }
 wheels = [
@@ -164,7 +164,7 @@ requires-dist = [
     { name = "ruff", specifier = "==0.8.4" },
     { name = "sh", marker = "sys_platform != 'win23'", specifier = "==2.1.0" },
     { name = "tox", specifier = "==4.23.2" },
-    { name = "tox-uv", specifier = ">=1.16.1" },
+    { name = "tox-uv", specifier = ">=1.16.2" },
 ]
 
 [[package]]
@@ -654,16 +654,16 @@ wheels = [
 
 [[package]]
 name = "tox-uv"
-version = "1.16.1"
+version = "1.16.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
     { name = "tox" },
     { name = "uv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/81/5a/5335fe0348d626a01e7a600e85cbea04e0f5f221e9c2f3a2b3664d774f69/tox_uv-1.16.1.tar.gz", hash = "sha256:63b0a872f1f97263f89fe41e7195b401a18a67a9a14e3803372091a364b43cd6", size = 16940 }
+sdist = { url = "https://files.pythonhosted.org/packages/34/7e/6331464889486389d63395ab6034333a8e3120c1093abca63d04e1c5628e/tox_uv-1.16.2.tar.gz", hash = "sha256:06d9c4c1a41c9d0cde472f111276c31b97aa7bf50abfa0bf6e17c0de891bdba9", size = 17301 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/57/1d/c44b1e246f95fadf9fc83b34f70fb297466bc580b71d756e85097ef1dd6a/tox_uv-1.16.1-py3-none-any.whl", hash = "sha256:ab5dae5df02ca3b6c00f95c86810afe6c0e2b8ff8e6d76053ef677dcce38975b", size = 13681 },
+    { url = "https://files.pythonhosted.org/packages/09/92/07ad2cbe8fbf80d2ba7a0cf246e1f62e48bbd8d59fb08e4c38bc94d9ca9d/tox_uv-1.16.2-py3-none-any.whl", hash = "sha256:57d4c00cfd7973f2d3ebb1ca2ecbf18599c47aa080253355a742de44430cc58b", size = 13693 },
 ]
 
 [[package]]
@@ -671,7 +671,7 @@ name = "tqdm"
 version = "4.66.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/58/83/6ba9844a41128c62e810fddddd72473201f3eacde02046066142a2d96cc5/tqdm-4.66.5.tar.gz", hash = "sha256:e1020aef2e5096702d8a025ac7d16b1577279c9d63f8375b63083e9a5f0fcbad", size = 169504 }
 wheels = [
