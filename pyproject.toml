@@ -19,10 +19,10 @@ dependencies = [
   "pytest-instafail==0.5",
   "pytest-xdist==3.6.1",
   "pyyaml==6.0.2",
-  "ruff==0.8.6",
-  "sh==2.1.0; sys_platform!='win23'",
+  "ruff==0.9",
+  "sh==2.1; sys_platform!='win23'",
   "tox==4.23.2",
-  "tox-uv>=1.17.0",
+  "tox-uv>=1.17",
 ]
 
 [tool.black]
