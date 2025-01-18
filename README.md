@@ -4,6 +4,9 @@
 [![license mit](https://img.shields.io/badge/licence-MIT-56BEB8)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
+> [!WARNING]
+> Discontinued. See the [dkcutter-django](https://github.com/dkshs/dkcutter-django) project.
+
 Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Cookiecutter Django is a framework for jumpstarting production-ready Django projects quickly.
 
 - If you have problems with Cookiecutter Django, please open [issues](https://github.com/dkshs/cookiecutter-django/issues/new).
